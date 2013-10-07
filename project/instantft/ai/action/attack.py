@@ -1,6 +1,8 @@
 # coding: utf-8
+
 from cheetahes.utils import sys_random as random
 from base import BaseAction
+
 
 class AttackAction(BaseAction):
     NORMAL_ATK = ['attack1', 'attack2']
@@ -29,7 +31,6 @@ class AttackAction(BaseAction):
     def frames(self):
         """
         """
-
         if not self.attacked:
             self.attacked = True
             yield self.agent.id, {self.field_name: self.target_type}
@@ -37,17 +38,15 @@ class AttackAction(BaseAction):
     def finish(self):
         """
         """
-
         return self.be.frames >= self.over_at
 
     def create_disaster(self):
         """
         """
-
         return self.skill.disaster(self)
 
     def get_target_pos(self):
         """
         """
-
         return self.target_pos
+

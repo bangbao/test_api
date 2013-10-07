@@ -20,6 +20,7 @@ def get_it(probability, weight=100):
     """
     return sys_random.randint(0, weight) <= probability
 
+
 def rand_weight(weight, weights, goods):
     """随机一个值
 
