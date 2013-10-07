@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="ua-mac ua-webkit">
+{% block head %}
+<head>
+{% block title%} <title>掌上刀塔后台</title> {% end %}
+{% block style%}
+<style type="text/css">
+    #info{border-collapse:collapse;border:0;font-size:12px;text-align:left;width:800px}
+    #info td table{width:100%}
+    #info td{border:0;padding:8px;line-height:24px}
+    #info th{padding:10px}
+
+    #data{border-collapse:collapse;border:1px solid #BEBEBE;font-size:12px;}
+    #data th{background:#BEBEBE;border-bottom:1px solid #BEBEBE;line-height:24px;
+             font-weight:lighter;padding:4px;text-align:center}
+    #data td{border:1px solid #BEBEBE;padding:4px;text-align:center;font-size:12px}
+
+    #mindata{border-collapse:collapse;font-size:12px;}
+    #mindata td{width:130px;padding:3px;text-align:left;font-size:12px;}
+    .addinput{width:60px;}
+    .inp{width:60px;}
+    .link{font-size:11px;}
+
+    #reset_link{font-size:11px;color:red}
+    #nva{margin-left:0;padding-left:0;}
+    #nva li{font-size:12px;text-align:center;display:inline;}
+    #nva li span{font-weight:bold}
+    .reset{color:red;}
+</style>
+{% end %}
+</head>
+{% end %}
+{% block body%}{% end %}
+<br/>
+{% block script %}
+<script type="text/javascript">
+var obj=document.getElementById("data");
+for(var i=0;i<obj.rows.length;i++){
+    obj.rows[i].onmouseover=function(){this.style.background="#B3D9D9";}
+    obj.rows[i].onmouseout=function(){this.style.background="";}
+}
+</script>
+{% end %}
+</html>

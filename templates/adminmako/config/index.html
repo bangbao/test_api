@@ -1,0 +1,45 @@
+# coding: utf-8
+<%inherit file="/admin/base.html"/>
+
+<body>
+<%from apps import settings %>
+<h3>游戏配置：</h3>
+<hr>
+<form action="/admin/config/reload/" method="post">
+  <select name="env" value="" title="选择环境">
+  %for env, name in sorted(envs.iteritems()):
+    %if env == env_id:
+      <option value="${ env }" selected> ${ name } </option>
+    %else:
+      <option value="${ env }"> ${ name } </option>
+    % endif
+  % endfor
+  </select>
+  <button type="submit" style="color:red;" onclick="return confirm('确定更新吗!!!!!');">服务器重新加载配置和资源</button>
+</form>
+
+<hr>
+<form action="/admin/config/upload/" method="post" enctype="multipart/form-data">
+  <select name="env" id="env" value="" title="选择环境">
+  %for env, name in sorted(envs.iteritems()):
+    %if env == env_id:
+      <option value="${ env }" selected> ${ name } </option>
+    %else:
+      <option value="${ env }"> ${ name } </option>
+    %endif
+  %endfor
+  </select>
+  <select name="config_filename" id="config_filename" value="" title="选择配置名字">
+  %for filename, config_keys in sorted(configs.iteritems()):
+     <option value="${ filename }"> ${ filename } </option>
+  % endfor
+  </select>
+  <input type="file" name="config_file" id="upload_file">
+  <input type="submit" value="上传" onclick="return confirm('上传?');">
+</form>
+<ul>
+  %for name, ver in game_configs:
+    <li>${name}: ${ver}</li>
+  %endfor
+</ul>
+</body>
