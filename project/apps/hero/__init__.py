@@ -1,7 +1,6 @@
 # coding: utf-8
 
 from cheetahes.utils import sys_random as random
-from cheetahes.db.expressions import Incr
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
 from apps import battle as battle_app
@@ -10,7 +9,6 @@ from models import Hero
 import time
 import bisect
 import itertools
-
 import logics
 import constants
 
