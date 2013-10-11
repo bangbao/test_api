@@ -133,17 +133,8 @@ class APIRequestHandler(UserMixIn, BaseRequestHandler):
     def _on_finish(self, response):
         """ API统一调用方法
         """
-        try:
-            self.write(ujson.dumps({
-                                'data': self.env.api(),
-                                'status': self.env.errno,
-                                'msg': self.env.msg,
-                                'headers': {},
-                            }, ensure_ascii=False))
-        finally:
-            self.finish()
-            del self.env
-            logging.info('_on_finish %r' % response)
+        self.api()
+        logging.info('_on_finish %r' % response)
 
     def on_finish(self):
         """ 处理异步方法
@@ -153,7 +144,7 @@ class APIRequestHandler(UserMixIn, BaseRequestHandler):
         
         self.env.finish()
 
-    #@tornado.web.asynchronous
+    @tornado.web.asynchronous
     def get(self):
         """ 处理GET请求
         """
@@ -180,7 +171,7 @@ class AdminRequestHandler(BaseRequestHandler):
         """
         self._lookup = lookup
         env_id = self.request.headers.get(Environ.ENVIRON_PARAMS_NAME,
-                                                 Environ.GLOBAL_ENVIRON)
+                                          Environ.GLOBAL_ENVIRON)
 
         if not env_id in ENVIRONS:
             raise tornado.web.HTTPError(403)
