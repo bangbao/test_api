@@ -1,16 +1,13 @@
 # coding: utf-8
 
 from models import Adven
-from test import (world_map_config, chapter_map_config)
 
 import itertools
 import logics
 
 
 def chapter_over(user, chapter, stage, select, win=False, grade=1):
-    """关卡结算
-
-    处理关卡的消耗和掉落
+    """关卡结算, 处理关卡的消耗和掉落
 
     Args:
         user: 用户对象
@@ -51,6 +48,7 @@ def chapter_over(user, chapter, stage, select, win=False, grade=1):
 
     return evolutions, loot_data
 
+
 def battle_evaluation(user, win, falls):
     """对战斗进行评级
 
@@ -63,6 +61,7 @@ def battle_evaluation(user, win, falls):
         评级
     """
     return 1
+
 
 def set_adven_record(user, chapter, stage, energy, grade,
                      light=0, dark=0, select=''):
@@ -78,12 +77,12 @@ def set_adven_record(user, chapter, stage, energy, grade,
         dark: 获得的黑暗点数
         select: 所选择的阵营
     """
-
     set_adven_adven(user, chapter, stage)
     set_adven_readven(user, chapter,
                       stage=stage, select=select)
     set_adven_data(user, stage,
                    energy=energy, grade=grade, light=light, dark=dark)
+
 
 def set_adven_adven(user, chapter, stage):
     """记录用户最高冒险记录
@@ -102,6 +101,7 @@ def set_adven_adven(user, chapter, stage):
     elif chapter == adven['chapter'] and stage > adven['stage']:
         adven['stage'] = stage
 
+
 def set_adven_readven(user, chapter, **obj):
     """记录用户冒险快照
 
@@ -117,6 +117,7 @@ def set_adven_readven(user, chapter, **obj):
     else:
         readven.modify(chapter, **obj)
 
+
 def set_adven_data(user, stage, **obj):
     """记录用户每个关卡数据
 
@@ -131,6 +132,7 @@ def set_adven_data(user, stage, **obj):
         data.add(stage, **obj)
     else:
         data.modify(stage, **obj)
+
 
 def reset_adven(user, chapter):
     """用户重置章节
@@ -158,11 +160,11 @@ def reset_adven(user, chapter):
                             light= -light,
                             dark= -dark,
                             energy=energy)
-
     user.adven.readven.modify(chapter,
                               reset=user.adven.readven[chapter]['reset'] + 1,
                               stage=stages[0],
                               select='')
+
 
 def get_adven_record(user):
     """获取用户当前最高记录
@@ -184,6 +186,7 @@ def get_adven_record(user):
         'stage_name': stages_config.get(stage, {}).get('name')
     }
 
+
 def adven_loot(user, loot, stage, **kwargs):
     """为用户发放过关奖励
 
@@ -204,7 +207,7 @@ def adven_loot(user, loot, stage, **kwargs):
     game_app = env.import_app('game')
     hero_app = env.import_app('hero')
     equip_app = env.import_app('equip')
-    game_config = user.env.game_config
+    game_config = env.game_config
 
     loot_heros = []
     for hero_cfg_id, level in loot['heros']:
@@ -232,6 +235,7 @@ def adven_loot(user, loot, stage, **kwargs):
         'gold': gold,
     }
 
+
 def adven_cost(user, cost):
     """攻关时的消耗
 
@@ -246,3 +250,4 @@ def adven_cost(user, cost):
     game_app.incr_user_attr(user, energy= -cost_energy)
 
     return cost_energy
+

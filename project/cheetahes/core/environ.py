@@ -128,10 +128,10 @@ class Environ(object):
                     self._modules[module_id] = sys.modules.pop(module)
 
                 return obj
-            except ImportError:
+            except ImportError, e:
                 continue
 
-        raise ImportError, "no module named %s" % module
+        raise ImportError, 'Try import `%s`, %s' % (module, e)
 
 
 class APIEnviron(object):

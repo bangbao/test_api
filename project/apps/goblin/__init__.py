@@ -101,8 +101,8 @@ def buy_pos_goblin(user, pos, game_config):
         user: 用户对象
         pos: 编队位置
     """
-    goblin_position = game_config['goblin_position']
     game_app = user.env.import_app('game')
+    goblin_position = game_config['goblin_position']
 
     extend_idx = extend_pos_goblin(user, pos)
 
@@ -306,11 +306,11 @@ def add_goblin(user, goblin, where=0, ext=0):
         ext: 扩展标识
     """
     obj_id = '%s_%d_%d_%s_%d_%s' % (user.pk,
-                                       int(time.time()),
-                                       goblin['cfg_id'],
-                                       salt_generator(),
-                                       where,
-                                       ext)
+                                    int(time.time()),
+                                    goblin['cfg_id'],
+                                    salt_generator(),
+                                    where,
+                                    ext)
     user.hero.goblins.add(obj_id, **goblin)
 
     return {
@@ -443,10 +443,8 @@ def format_goblins(user, goblin_ids, filter_func=None):
     user_hero = user.hero
     game_config = user.env.game_config
     used_goblin = get_used_goblin(user)
+    filter_func = filter_func or (lambda x: True)
     goblins = {}
-
-    if not callable(filter_func):
-        filter_func = publics.lambda_func(default=True)
 
     for goblin_id in itertools.ifilter(None, goblin_ids):
         obj = user_hero.goblins[goblin_id]
@@ -468,12 +466,12 @@ def del_goblins(user, goblin_ids):
         user: 用户对象
         goblin_ids: 要删除的零件id们
     """
-    user_hero = user.hero
+    goblins = user.hero.goblins
     used_goblin = get_used_goblin(user)
 
     for goblin_id in goblin_ids:
         if goblin_id not in used_goblin:
-            user_hero.goblins.remove(goblin_id)
+            goblins.remove(goblin_id)
 
 
 def apply_goblin_effect(user, formation):

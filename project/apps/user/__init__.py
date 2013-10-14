@@ -52,7 +52,7 @@ def login(env, req):
     Returns:
         用户对象
     """
-    user_token = req.get_argument('user_token', 'test')
+    user_token = req.get_argument('user_token', '')
     password = req.get_argument('password', '')
 
     #import logging
@@ -86,13 +86,10 @@ def get_uid(env, token, password):
     Returns:
         token 对应的 uid
     """
-
     connection = env.storage.connects.get(ModelDict, User)
     cursor = connection.cursor()
 
-    query = "SELECT id FROM %s_%s WHERE token='%s'" % (User.NAME, User.FIELD_KEY,
-                                                       token)
-
+    query = "SELECT id FROM %s_%s WHERE token='%s'" % (User.NAME, User.FIELD_KEY, token)
     cursor.execute(query)
     data = cursor.fetchone()
 

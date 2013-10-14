@@ -1,15 +1,6 @@
 # coding: utf-8
 
 
-PET_BIRTH_INIT = {
-    'level': 1,
-    'exp': 0,
-    'level_up': 0,
-    'full': 0,
-    'clone': 1,
-    'skill': '',
-}
-
 PET_SKILL_SEQ = [0, 1, 2, 3, 4, 5]
 PET_SKILL_UNOPENED = 'unopened'
 PET_SKILL_DEFAULTS = {

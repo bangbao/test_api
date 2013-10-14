@@ -75,12 +75,10 @@ def goblin_upgrade(obj, game_config):
 
     while (need_exp and obj['exp'] - need_exp >= 0):
         level += 1
-
         obj['exp'] -= need_exp
         obj['level'] = level
 
         level_config = up_detail.get(level)
-
         if not level_config:
             obj['exp'] = 0
             break
@@ -175,6 +173,7 @@ def calc_merge_cost(dst, merges, game_config):
     info = goblin_info(dst, game_config)
 
     return info['base']['cost'] * len(merges)
+
 
 def goblin_merge(dst, merges, game_config):
     """零件合成

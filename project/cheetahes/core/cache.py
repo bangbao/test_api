@@ -89,8 +89,9 @@ class Cache(object):
         if value.CACHE_TYPE == 'string':
             pipe.set(key, data)
         elif value.CACHE_TYPE == 'hash':
-            pipe = rclient.pipeline()
-            pipe.hmset(key, data)
+            #pipe = rclient.pipeline()
+            if data:
+                pipe.hmset(key, data)
 
             if value.removes:
                 pipe.hdel(key, *value.removes)

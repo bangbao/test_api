@@ -28,7 +28,6 @@ class Adven(Carrier):
             energy: 消耗的体力
     """
     __metaclass__ = DynamicModel
-
     NAME = 'adven'
     DATABASE = 'clusters'
     FIELDS = ['adven', 'readven', 'data']
@@ -36,8 +35,7 @@ class Adven(Carrier):
     def init(self):
         self.adven = ModelDict({
                         'chapter': 1,
-                        'stage': 11,
-                    })
+                        'stage': 11})
         self.readven = ModelList({
                         'stage': 0,
                         'select': '',

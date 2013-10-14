@@ -14,10 +14,12 @@ FIELD_KEY = 'data'
 
 class CarrierUser(Carrier):
     def init(self):
-        self.data = ModelDict({'username': '',
-                       'password': '',
-                       'salt': '',
-                       'token': ''})
+        self.data = ModelDict({
+                        'username': '',
+                        'password': '',
+                        'salt': '',
+                        'token': ''})
+
 
 class NewUser(CarrierUser):
     __metaclass__ = DynamicModel
@@ -29,7 +31,7 @@ class NewUser(CarrierUser):
     @classmethod
     def create(cls, env, token, password):
         obj = cls(None)  # primary key is None
-        salt = hashlib.sha1(str(uuid.uuid4())).digest()[:10]
+        salt = str(uuid.uuid1())
         salt_password = salt + password
         obj.data['salt'] = salt
         obj.data['password'] = hashlib.sha1(salt_password).hexdigest()
@@ -38,6 +40,7 @@ class NewUser(CarrierUser):
         env.storage.save(obj)
 
         return obj.pk
+
 
 class User(CarrierUser):
     """用户模块
@@ -55,7 +58,6 @@ class User(CarrierUser):
             salt: 用户注册时生成的salt
             token: 用户标识
     """
-
     __metaclass__ = DynamicModel
     NAME = USER_MODEL_NAME
     DATABASE = USER_DATABASE
@@ -82,7 +84,6 @@ class User(CarrierUser):
         hero_app = env.import_app('hero')
         adven_app = env.import_app('adven')
         arena_app = env.import_app('arena')
-        #logging.info('user init: %r %r %r %r' (game_app, hero_app, adven_app, arena_app))
 
         if not read_only:
             self.on_loaded = [

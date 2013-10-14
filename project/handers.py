@@ -222,7 +222,7 @@ class ChatRequestHandler(UserMixIn, tornado.websocket.WebSocketHandler):
         创建公共环境和运行环境
         """
         env_id = self.request.headers.get(Environ.ENVIRON_PARAMS_NAME,
-                                                 Environ.GLOBAL_ENVIRON)
+                                          Environ.GLOBAL_ENVIRON)
 
         if not env_id in ENVIRONS:
             raise tornado.web.HTTPError(403)
@@ -294,3 +294,4 @@ class ChatRequestHandler(UserMixIn, tornado.websocket.WebSocketHandler):
 
 if __name__ == "__main__":
     print '1'
+

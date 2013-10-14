@@ -1,27 +1,28 @@
 # coding: utf-8
-from instantft.ai import AI
-from instantft.battle.field import BattleField
-from instantft.battle.buff import Buff
-from agents.base import (MAGE_AGENT,
-                         WARRIOR_AGENT,
-                         PASTOR_AGENT,
-                         ROBBER_AGENT,
-                         KNIGHT_AGENT,
-                         RANGER_AGENT,
-                         CATAPULT_AGENT,
-                         COMMON_AGENT)
-import agents
 
-AGENT_MAPPING = {
-    MAGE_AGENT: agents.MageAgent,
-    WARRIOR_AGENT: agents.WarriorAgent,
-    PASTOR_AGENT: agents.PastorAgent,
-    ROBBER_AGENT: agents.RobberAgent,
-    KNIGHT_AGENT: agents.KnightAgent,
-    RANGER_AGENT: agents.RangerAgent,
-    CATAPULT_AGENT: agents.CatapultAgent,
-    COMMON_AGENT: agents.CommentAgent,
-}
+#from instantft.ai import AI
+#from instantft.battle.field import BattleField
+#from instantft.battle.buff import Buff
+#from agents.base import (MAGE_AGENT,
+#                         WARRIOR_AGENT,
+#                         PASTOR_AGENT,
+#                         ROBBER_AGENT,
+#                         KNIGHT_AGENT,
+#                         RANGER_AGENT,
+#                         CATAPULT_AGENT,
+#                         COMMON_AGENT)
+#import agents
+#
+#AGENT_MAPPING = {
+#    MAGE_AGENT: agents.MageAgent,
+#    WARRIOR_AGENT: agents.WarriorAgent,
+#    PASTOR_AGENT: agents.PastorAgent,
+#    ROBBER_AGENT: agents.RobberAgent,
+#    KNIGHT_AGENT: agents.KnightAgent,
+#    RANGER_AGENT: agents.RangerAgent,
+#    CATAPULT_AGENT: agents.CatapultAgent,
+#    COMMON_AGENT: agents.CommentAgent,
+#}
 
 
 def create_agent(agent_job, **kwargs):
