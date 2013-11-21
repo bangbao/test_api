@@ -28,15 +28,18 @@ def format_heros(user, hero_ids, filter_func=None):
     game_config = user.env.game_config
     filter_func = filter_func or publics.lambda_func(default=True)
     heros = {}
+    configs = {}
 
     for hero_id in itertools.ifilter(None, hero_ids):
         obj = user_hero.heros[hero_id]
 
         if filter_func(obj):
+            #heros[hero_id] = obj
+            #configs[obj['cfg_id']] = logics.filter_hero_info(obj, game_config)
             heros[hero_id] = logics.hero_info(obj, game_config,
                                               hero_id=hero_id)
 
-    return heros
+    return heros, configs
 
 
 def hero2formation(user, hero_ids):

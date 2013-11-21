@@ -18,9 +18,15 @@ def heros(env):
     hero_app.hero_check(user)
     user.save_all()
 
+    hero_objs, hero_configs = hero_app.format_heros(user, user.hero.heros.iterkeys())
+
     return {
         'team': hero_app.team_get(user),
-        'heros': hero_app.format_heros(user, user.hero.heros.iterkeys()),
+        'heros': hero_objs,
+        #'heros': hero_app.format_heros(user, user.hero.heros.iterkeys()),
+        'configs': {
+            'heros': hero_configs,
+        }
     }
 
 

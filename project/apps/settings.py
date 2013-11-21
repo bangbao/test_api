@@ -3,6 +3,13 @@
 import MySQLdb
 import MySQLdb.cursors
 
+mysql_host = 'localhost'
+mysql_port = 3306
+mysql_user = 'root'
+mysql_passwd = '510312'
+mysql_cursorclass = MySQLdb.cursors.DictCursor
+
+
 DATABASES = {
     'lose': {
         'host': 'localhost',
@@ -15,12 +22,12 @@ DATABASES = {
     },
     'redis': {
         'host': 'localhost',
-        'port': 16379, 
+        'port': 6379, 
         'db': 0,
     },
     'chat': {
         'host': 'localhost',
-        'port': 16379, 
+        'port': 6379, 
     },
     'auth': {
         'host': 'localhost',
@@ -72,10 +79,10 @@ DATABASES = {
 }
 
 CACHES = [
-    {'host': 'localhost', 'port': 16379, 'db': 0},
-    {'host': 'localhost', 'port': 16379, 'db': 0},
-    {'host': 'localhost', 'port': 16379, 'db': 0},
-    {'host': 'localhost', 'port': 16379, 'db': 0},
+    {'host': 'localhost', 'port': 6379, 'db': 0},
+    {'host': 'localhost', 'port': 6379, 'db': 0},
+    {'host': 'localhost', 'port': 6379, 'db': 0},
+    {'host': 'localhost', 'port': 6379, 'db': 0},
 ]
 
 CACHES_LEN = len(CACHES)

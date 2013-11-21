@@ -3,6 +3,8 @@
 # C extensions
 *.so
 *.pyc
+*.log
+
 
 # Packages
 *.egg

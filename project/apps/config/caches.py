@@ -24,24 +24,16 @@ class AppCacheConfig(object):
         """
         """
         super_new = super(AppCacheConfig, cls).__new__
-        env_id = env.env.identity
+        obj = cls._cache.setdefault(env.env.identity, 
+                                    super_new(cls, env))
 
-        obj = cls._cache.get(env_id)
-        if not obj:
-            obj = cls._cache[env_id] = super_new(cls, env)
-            #logging.info('new config %r' % cls._cache)
-
-        #logging.info('new config %r' % repr(obj.caches.keys()))
         return obj
 
     def __init__(self, env):
         self.env = env
-        #self.caches = {}
-        #logging.info('config size: %s' % (sys.getsizeof(self)))
 
     def __getitem__(self, name):
         if not name in self.caches:
-            #logging.info('get config %s' % name)
             self.caches[name] = self.loader(self.env, name)
 
         return self.caches[name]

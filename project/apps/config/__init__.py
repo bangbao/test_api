@@ -45,6 +45,7 @@ def loadall(env):
                                       'local': vers
                                     }
 
+
 def set_config(env, name, value):
     """设置指定环境的配置
 
@@ -124,6 +125,7 @@ def get_configs(env, names):
         game_config[name] = get_config(env, name)
 
     return game_config
+
 
 AppCacheConfig.loader = staticmethod(get_config)
 

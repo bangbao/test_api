@@ -133,6 +133,23 @@ def get_hero_detail(obj, game_config):
     return heros[obj['cfg_id']]
 
 
+def filter_hero_info(obj, game_config, **kwargs):
+    """
+    """
+    hero_detail = get_hero_detail(obj, game_config)
+
+    info = dict(star=hero_detail['star'],
+                type=hero_detail['type'],
+                name=hero_detail['name'],
+                level_top=hero_detail['max_level'],
+                image=hero_detail['image'],
+                icon=hero_detail['icon'],
+                res=hero_detail['res'],
+                story=hero_detail['story'],
+                **kwargs)
+
+    return info
+
 def hero_info(obj, game_config, **kwargs):
     """把一个卡牌对象转换成前端需要显示的格式
 

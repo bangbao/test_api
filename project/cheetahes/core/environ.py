@@ -60,6 +60,8 @@ class Environ(object):
 
             object_list.append(os.path.join(self.document_root, 
                                             self.APP_FOLDER_NAME))
+            self._paths['app_path'] = object_list
+
         return object_list
 
     def api_path(self):
@@ -74,6 +76,7 @@ class Environ(object):
 
             object_list.append(os.path.join(self.document_root, self.APP_FOLDER_NAME,
                                             self.API_FOLDER_NAME))
+            self._paths['api_path'] = object_list
 
         return object_list
 
@@ -89,20 +92,22 @@ class Environ(object):
 
             object_list.append(os.path.join(self.document_root, self.APP_FOLDER_NAME,
                                          self.FILTER_FOLDER_NAME))
+            self._paths['filter_path'] = object_list
 
         return object_list
 
     def join_path(self, *args):
         """
         """
-        env, version = self.identity.split(':')
+        envname, version = self.identity.split(':')
 
         return [os.path.join(self.document_root, self.BASE_SUB_ENVIRON,
-                           env, version, *args),
-                os.path.join(self.document_root, self.BASE_SUB_ENVIRON,
-                           self.DEFAULT_ENVIRON, version, *args),
-                os.path.join(self.document_root, self.BASE_SUB_ENVIRON,
-                              env, self.CURRENT_ENVIRON, *args)]
+                             envname, version, *args),
+                #os.path.join(self.document_root, self.BASE_SUB_ENVIRON,
+                #             self.DEFAULT_ENVIRON, version, *args),
+                #os.path.join(self.document_root, self.BASE_SUB_ENVIRON,
+                #             envname, self.CURRENT_ENVIRON, *args)
+            ]
 
     def is_global(self):
         """

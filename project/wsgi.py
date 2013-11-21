@@ -10,6 +10,7 @@ from handers import ChatRequestHandler
 from handers import ENVIRONS
 from handers import preloader
 from handers import TEMPLATE_PATH, STATIC_PATH
+import tornado
 
 import os
 import gc
@@ -46,10 +47,19 @@ def main():
         preloader(env)
 
     options.parse_command_line()
+    sokets = tornado.netutil.bind_sockets(options.port)
+    tornado.process.fork_processes(0)
     app = Application(options.debug)
     server = HTTPServer(app)
-    server.listen(options.port)
+    #server.listen(options.port)
+    server.add_sockets(sokets)
     process = psutil.Process(os.getpid())
+
+    #options.parse_command_line()
+    #app = Application(options.debug)
+    #server = HTTPServer(app)
+    #server.listen(options.port)
+    #process = psutil.Process(os.getpid())
 
     def shutdown():
         io_loop = ioloop.IOLoop.instance()

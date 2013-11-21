@@ -1,7 +1,6 @@
-[W 131020 23:04:04 web:1635] 404 GET / (127.0.0.1) 1.04ms
-[I 131020 23:04:09 web:1635] 301 GET /admin (127.0.0.1) 0.70ms
-[I 131020 23:04:09 web:1635] 200 GET /admin/ (127.0.0.1) 58.24ms
-[I 131020 23:04:09 web:1635] 200 GET /admin/left/ (127.0.0.1) 93.36ms
-[I 131020 23:04:09 web:1635] 200 GET /admin/user/ (127.0.0.1) 76.92ms
-[I 131020 23:04:17 web:1635] 200 GET /admin/game/ (127.0.0.1) 21.58ms
-[I 131020 23:04:18 web:1635] 200 GET /admin/user/ (127.0.0.1) 4.85ms
+[I 131030 23:33:21 process:115] Starting 4 processes
+[I 131103 00:00:30 process:115] Starting 4 processes
+[I 131103 00:00:59 process:115] Starting 4 processes
+[I 131103 00:01:21 process:115] Starting 4 processes
+[I 131103 00:01:24 process:115] Starting 4 processes
+[I 131103 00:02:24 process:115] Starting 4 processes
