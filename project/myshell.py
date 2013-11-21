@@ -27,8 +27,8 @@ if argv:
 
 
 ########################################################
-from cheetahes.core.environ import ShellEnviron
-#from cheetahes.db.expressions import Incr 
+from lib.core.environ import ShellEnviron
+#from lib.db.expressions import Incr 
 from apps import config as config_app
 
 

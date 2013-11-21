@@ -2,7 +2,7 @@
 
 from __future__ import with_statement
 
-from cheetahes.core.environ import ShellEnviron
+from lib.core.environ import ShellEnviron
 from handers import ENVIRONS
 from apps import config as config_app
 from apps.config.transfer import FILE_CONFIGS, CONFIG_MAPPING

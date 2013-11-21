@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from cheetahes.core.storage import Storage
-from cheetahes.core.cache import Cache
+from lib.core.storage import Storage
+from lib.core.cache import Cache
 
 import os
 import imp

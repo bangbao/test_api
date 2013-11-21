@@ -2,7 +2,7 @@
 
 import constants
 from apps.admin import handle
-from cheetahes.db.fields import ModelDict
+from lib.db.fields import ModelDict
 from apps.user.models import User
 
 TEMPLATE = 'admin/user/usermain.html'

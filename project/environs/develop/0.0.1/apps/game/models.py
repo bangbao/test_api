@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from cheetahes.db import Carrier
-from cheetahes.db.fields import ModelDict
+from lib.db import Carrier
+from lib.db.fields import ModelDict
 
 class Game(Carrier):
     def init(self):

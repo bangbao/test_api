@@ -3,7 +3,7 @@
 import time
 from models import Guild
 from models import Guilds
-from cheetahes.db.expressions import Incr
+from lib.db.expressions import Incr
 
 GUILD_MASTER = 1
 GUILD_MEMBER = 99

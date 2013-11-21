@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.utils import rand_weight
+from lib.utils import rand_weight
 
 import itertools
 

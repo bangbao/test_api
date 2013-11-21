@@ -1,7 +1,7 @@
 # coding: utf-8
 """ 聊天细节处理
 """
-from cheetahes.db.fields import ModelChat
+from lib.db.fields import ModelChat
 import itertools
 
 CHAT_CONNECTIONS = {}

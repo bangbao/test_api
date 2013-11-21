@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from cheetahes.utils import sys_random as random
-from cheetahes.utils import rand_weight
+from lib.utils import sys_random as random
+from lib.utils import rand_weight
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
 from collections import defaultdict

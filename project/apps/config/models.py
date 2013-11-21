@@ -1,8 +1,8 @@
 # coding: utf-8
 
-from cheetahes.db import Carrier
-from cheetahes.db.fields import ModelConfig
-from cheetahes.db.metaclass import DynamicModel
+from lib.db import Carrier
+from lib.db.fields import ModelConfig
+from lib.db.metaclass import DynamicModel
 
 
 class Config(Carrier):

@@ -2,8 +2,8 @@
 from __future__ import division
 from heapq import heappush
 from collections import defaultdict
-from cheetahes.utils import get_it
-from cheetahes.utils import sys_random as random
+from lib.utils import get_it
+from lib.utils import sys_random as random
 from instantft.battle.timer import AttackRound
 from instantft.battle.timer import MoveRound
 from instantft.battle.skill import (NORMAL_ATTACK,

@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.utils import sys_random as random
+from lib.utils import sys_random as random
 from apps.public import logics as publics
 
 import bisect

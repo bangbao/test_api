@@ -1,9 +1,9 @@
 # coding: utf-8
 
-from cheetahes.core.handlers.htornado import BaseRequestHandler
-from cheetahes.core.environ import Environ
-from cheetahes.core.environ import APIEnviron
-from cheetahes.core.environ import AdminEnviron
+from lib.core.handlers.htornado import BaseRequestHandler
+from lib.core.environ import Environ
+from lib.core.environ import APIEnviron
+from lib.core.environ import AdminEnviron
 from apps import config as config_app
 from collections import defaultdict
 

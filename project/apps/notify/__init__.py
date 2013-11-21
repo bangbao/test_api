@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.core.environ import RUNTIME_INFO
+from lib.core.environ import RUNTIME_INFO
 
 
 def notify(env, errno):

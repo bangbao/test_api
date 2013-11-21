@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.utils import sys_random as random
+from lib.utils import sys_random as random
 
 import time
 import bisect

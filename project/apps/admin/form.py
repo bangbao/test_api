@@ -4,8 +4,8 @@ import re
 import time
 import datetime
 from apps import config as config_app
-from cheetahes.db.fields import ModelDict
-from cheetahes.db.fields import ModelList
+from lib.db.fields import ModelDict
+from lib.db.fields import ModelList
 
 class Form(object):
     """后台表单类

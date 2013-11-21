@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.db.fields import ModelDict
+from lib.db.fields import ModelDict
 from models import User, NewUser
 
 import logics

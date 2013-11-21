@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cheetahes.db.expressions import Incr
+from lib.db.expressions import Incr
 from models import Game
 
 import time

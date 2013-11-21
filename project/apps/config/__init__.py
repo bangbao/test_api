@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from cheetahes.core.environ import Environ
-from cheetahes.db.fields import ModelConfig
+from lib.core.environ import Environ
+from lib.db.fields import ModelConfig
 from models import Config
 from caches import AppCacheConfig
 

@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from cheetahes.utils import rand_weight
-from cheetahes.db.expressions import Incr
+from lib.utils import rand_weight
+from lib.db.expressions import Incr
 from apps.public import logics as publics
 from apps import config as config_app
 from models import Arena

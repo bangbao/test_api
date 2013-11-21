@@ -3,7 +3,7 @@ from tornado.httpserver import HTTPServer
 from tornado import ioloop
 from tornado import web
 from tornado.options import define, options
-from cheetahes.core.environ import ShellEnviron
+from lib.core.environ import ShellEnviron
 from handers import APIRequestHandler
 from handers import AdminRequestHandler
 from handers import ChatRequestHandler

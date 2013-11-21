@@ -2,7 +2,7 @@
 
 from apps.admin import handle
 from apps.admin.form import Form
-from cheetahes.db.fields import ModelDict
+from lib.db.fields import ModelDict
 from apps.user.models import User
 
 import logics

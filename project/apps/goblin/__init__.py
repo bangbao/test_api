@@ -1,8 +1,8 @@
 # coding: utf-8
 
-from cheetahes.utils import get_it
-from cheetahes.utils import sys_random as random
-from cheetahes.db.expressions import Incr
+from lib.utils import get_it
+from lib.utils import sys_random as random
+from lib.db.expressions import Incr
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
 
