@@ -136,7 +136,7 @@ class Environ(object):
             except ImportError, e:
                 continue
 
-        raise ImportError, 'Try import `%s`, %s' % (module, e)
+        raise ImportError, 'Try import `%s`, %s %r' % (module, e, path)
 
 
 class APIEnviron(object):
@@ -240,7 +240,7 @@ class APIEnviron(object):
         """
         """
         if self.env.multi():
-            user = self.req.get_current_user()
+            user = self.req.get_current_user(self)
 
             return self.env.import_module(module, path)
 

@@ -6,6 +6,7 @@ from lib.db.metaclass import DynamicModel
 import hashlib
 import uuid
 import logging
+import weakref
 
 
 USER_DATABASE = 'auth'
@@ -77,7 +78,7 @@ class User(CarrierUser):
         """
         super(User, self).__init__(pk, read_only)
 
-        self.env = env
+        self.env = weakref.proxy(env)
         self.on_loaded = []
 
         game_app = env.import_app('game')
