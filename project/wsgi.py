@@ -4,12 +4,11 @@ from tornado import ioloop
 from tornado import web
 from tornado.options import define, options
 from lib.core.environ import ShellEnviron
-from handers import APIRequestHandler
-from handers import AdminRequestHandler
-from handers import ChatRequestHandler
-from handers import ENVIRONS
-from handers import preloader
-from handers import TEMPLATE_PATH, STATIC_PATH
+from apps import settings
+from apps.handers import APIRequestHandler
+from apps.handers import AdminRequestHandler
+from apps.handers import ChatRequestHandler
+from apps.handers import preloader
 
 import os
 import gc
@@ -31,16 +30,11 @@ class Application(web.Application):
             (r"/chat/", ChatRequestHandler),
             (r"/admin.*", AdminRequestHandler),
         ]
-        settings = dict(
-            template_path=TEMPLATE_PATH,
-            static_path=STATIC_PATH,
-            debug=debug,
-        )
-        super(Application, self).__init__(handlers, **settings)
+        super(Application, self).__init__(handlers, **settings.TORNADO_SETTINGS)
 
 
 def main():
-    for env_id, (doc_root, short_id) in ENVIRONS.iteritems():
+    for env_id, (doc_root, short_id) in settings.ENVIRONS.iteritems():
         env = ShellEnviron.build_env(env_id, doc_root)
         env.set_short_id(short_id)
         preloader(env)

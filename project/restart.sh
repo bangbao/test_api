@@ -14,6 +14,6 @@ do
     sudo kill -9 $p && echo $p' killed'
 done
 
-export environment_key=dev1 && python -O ${P_DIR}/wsgi.py --port=58500 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'restart sucess'
+export env_key=dev && python -O ${P_DIR}/wsgi.py --port=58500 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'restart sucess'
 
 #supervisorctl -c supervisor.conf restart mdota:*
