@@ -10,7 +10,6 @@ from handers import ChatRequestHandler
 from handers import ENVIRONS
 from handers import preloader
 from handers import TEMPLATE_PATH, STATIC_PATH
-import tornado
 
 import os
 import gc
@@ -20,7 +19,7 @@ import signal
 import logging
 
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=58500, help="run on the given port", type=int)
 define("debug", default=True, help="run at debug mode", type=bool)
 define("maxmem", default=0, help="max memory use, overflow kill by self. (0 unlimit)", type=int)
 
@@ -46,20 +45,20 @@ def main():
         env.set_short_id(short_id)
         preloader(env)
 
-    options.parse_command_line()
-    sokets = tornado.netutil.bind_sockets(options.port)
-    tornado.process.fork_processes(0)
-    app = Application(options.debug)
-    server = HTTPServer(app)
-    #server.listen(options.port)
-    server.add_sockets(sokets)
-    process = psutil.Process(os.getpid())
-
     #options.parse_command_line()
+    #sokets = tornado.netutil.bind_sockets(options.port)
+    #tornado.process.fork_processes(0)
     #app = Application(options.debug)
     #server = HTTPServer(app)
-    #server.listen(options.port)
+    ##server.listen(options.port)
+    #server.add_sockets(sokets)
     #process = psutil.Process(os.getpid())
+
+    options.parse_command_line()
+    app = Application(options.debug)
+    server = HTTPServer(app)
+    server.listen(options.port)
+    process = psutil.Process(os.getpid())
 
     def shutdown():
         io_loop = ioloop.IOLoop.instance()

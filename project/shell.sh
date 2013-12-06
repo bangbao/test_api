@@ -1,3 +1,3 @@
 #/bin/bash
 
-ipython -i myshell.py
+export environment_key=dev1 && ipython -i myshell.py

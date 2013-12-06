@@ -18,7 +18,6 @@ def import_file(filename, mapping):
     Returns:
         解析后的配置内容
     """
-    assert os.access(filename, os.R_OK)
     config = {}
 
     with open(filename, 'rb') as _fp:
@@ -54,7 +53,7 @@ def import_file(filename, mapping):
             print 'filename:', filename
             print 'line_num:', fp.line_num
             print 'row:', row
-            raise
+            raise e
 
 
 def group_keys(keys, mapping):

@@ -36,8 +36,7 @@ def format_heros(user, hero_ids, filter_func=None):
         if filter_func(obj):
             #heros[hero_id] = obj
             #configs[obj['cfg_id']] = logics.filter_hero_info(obj, game_config)
-            heros[hero_id] = logics.hero_info(obj, game_config,
-                                              hero_id=hero_id)
+            heros[hero_id] = obj #logics.hero_info(obj, game_config, hero_id=hero_id)
 
     return heros, configs
 

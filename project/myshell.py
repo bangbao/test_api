@@ -30,6 +30,7 @@ if argv:
 from lib.core.environ import ShellEnviron
 #from lib.db.expressions import Incr 
 from apps import config as config_app
+from apps import settings
 
 
 env = ShellEnviron.build_env(env_id)
