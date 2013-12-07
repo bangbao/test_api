@@ -20,7 +20,6 @@ def add_panel(uid, mname, field, count, params=None):
     Returns:
         HTML代码字符串
     """
-
     param_html = []
     if params:
         for param_info in params:
@@ -56,7 +55,6 @@ def field_to_form(label, mname):
     Returns:
         HTML代码字符串
     """
-
     def html(context, field):
         """
         Args:
@@ -86,16 +84,17 @@ def value_to_form(label):
     Returns:
         HTML代码字符串
     """
-
     def html(value, val):
         """
         Args:
             value: 字段值
             val: 字段名
         """
-
         if isinstance(value, str):
-            value = value.decode('utf-8')
+            try:
+                value = value.decode('utf-8')
+            except UnicodeDecodeError:
+                value = repr(value)
             
         return (u'<tr><td>%s</td>'
                 u'<td><input type="" name="%s" value="%s" />' 

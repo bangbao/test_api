@@ -4,7 +4,7 @@ import os
 
 DEBUG = True
 
-ENVIRONMENT = os.environ.get('env_key', 'dev')
+ENVIRONMENT = os.environ.get('gameenv', 'dev')
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 APP_ROOT = os.path.join(PROJECT_ROOT, 'apps')
@@ -12,7 +12,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 LOGS_ROOT = os.path.join(PROJECT_ROOT, 'logs')
 TMP_ROOT = os.path.join(PROJECT_ROOT, 'tmp')
 TEMPLATE_ROOT = os.path.join(PROJECT_ROOT, 'templates')
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'statics')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 
 ENVIRONS = {

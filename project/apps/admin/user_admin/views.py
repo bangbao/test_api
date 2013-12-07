@@ -25,6 +25,7 @@ def index(env, msg=None):
     return env.render('admin/user/index.html',
                       {'user_data': user_data, 'msg': msg})
 
+
 def show(env, msg=None):
     """显示用户选定数据
     """
@@ -42,6 +43,7 @@ def show(env, msg=None):
     }
 
     return env.render('admin/user/show.html', data)
+
 
 def modify(env):
     """修改用户数据
@@ -104,4 +106,5 @@ def getmodel(env, uid, field=None):
     user.load_all()
 
     return user
+
 

@@ -80,6 +80,11 @@ class ConnectPool(object):
         conn = db_direct(**db_params)
         self.connects[key] = conn
         #logging.info('connect2: %s %r' % (key, conn))
+        if field.STORAGE_TYPE == 'mysql':
+            conn.set_character_set('utf8')
+            c=conn.cursor()
+            c.execute('SET NAMES utf8;')
+            c.execute('SET CHARACTER SET utf8;')
 
         return conn
 

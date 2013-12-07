@@ -1,14 +1,15 @@
 # coding: utf-8
+
 from tornado.httpserver import HTTPServer
+from tornado.options import define, options
 from tornado import ioloop
 from tornado import web
-from tornado.options import define, options
 from lib.core.environ import ShellEnviron
 from apps import settings
-from apps.handers import APIRequestHandler
-from apps.handers import AdminRequestHandler
-from apps.handers import ChatRequestHandler
-from apps.handers import preloader
+from apps.handers import (APIRequestHandler, 
+                          AdminRequestHandler, 
+                          ChatRequestHandler, 
+                          preloader)
 
 import os
 import gc
@@ -94,4 +95,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

@@ -6,7 +6,7 @@ import sys
 import os
 
 
-uid = 2
+uid = 20
 target_id = 1
 static_config = False
 dev1 = ('develop:0.0.1', 2)
