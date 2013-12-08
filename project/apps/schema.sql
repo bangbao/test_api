@@ -1,6 +1,10 @@
 ﻿-- 全局sql文件
 -- 执行后可创建项目全部的表，主要用于新项目部署
 
+CREATE DATABASE IF NOT EXISTS `auth` DEFAULT CHARACTER SET utf8;
+USE `auth`;
+DROP TABLE IF EXISTS `user_data`;
+
 CREATE TABLE `user_data` (
        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
        `token` varchar(255) NOT NULL DEFAULT '',
@@ -12,6 +16,26 @@ CREATE TABLE `user_data` (
        PRIMARY KEY (`id`),
        UNIQUE (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE DATABASE IF NOT EXISTS `lose` DEFAULT CHARACTER SET utf8;
+USE `lose`;
+DROP TABLE IF EXISTS `game_config`;
+
+CREATE TABLE `game_config` (
+    `id` varchar(255) NOT NULL,
+    `value` longtext NOT NULL,
+    `env` varchar(255) DEFAULT '',
+    `ver` varchar(255) DEFAULT '',
+    `name` varchar(255) DEFAULT '',
+    `created_at` int(10) unsigned NOT NULL DEFAULT '0',
+    `updated_at` int(10) unsigned NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE DATABASE IF NOT EXISTS `cm1` DEFAULT CHARACTER SET utf8;
+USE `cm1`;
 
 CREATE TABLE `game_info` (
        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -77,17 +101,6 @@ CREATE TABLE `game_goblin` (
        `updated_at` int(10) UNSIGNED NOT NULL DEFAULT 0,
        PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `game_config` (
-  `id` varchar(255) NOT NULL,
-  `value` longtext NOT NULL,
-  `env` varchar(255) DEFAULT '',
-  `ver` varchar(255) DEFAULT '',
-  `name` varchar(255) DEFAULT '',
-  `created_at` int(10) unsigned NOT NULL DEFAULT '0',
-  `updated_at` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 create table `game_friends` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -295,3 +308,5 @@ CREATE TABLE `arena_logs` (
        UNIQUE (`log_id`),
        KEY(`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
