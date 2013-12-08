@@ -70,3 +70,4 @@ def value_to_form(label, name):
             u'<td><input type="text" name="%s" value="%s" />'
             u'</td></tr>') % (label, name, value_format)
 
+

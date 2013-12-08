@@ -35,6 +35,7 @@
 {% block script %}
 <script type="text/javascript">
 var obj=document.getElementById("data");
+if !obj{ return false}
 for(var i=0;i<obj.rows.length;i++){
     obj.rows[i].onmouseover=function(){this.style.background="#B3D9D9";}
     obj.rows[i].onmouseout=function(){this.style.background="";}

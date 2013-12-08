@@ -1,12 +1,13 @@
 # coding: utf-8
 
-from lib.db import Carrier
-from lib.db.fields import ModelDict
-from lib.db.metaclass import DynamicModel
 import hashlib
 import uuid
 import logging
 import weakref
+
+from lib.db import Carrier
+from lib.db.fields import ModelDict
+from lib.db.metaclass import DynamicModel
 
 
 USER_DATABASE = 'auth'

@@ -5,13 +5,13 @@ from lib.utils import sys_random as random
 from lib.db.expressions import Incr
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
+from . import constants
+from . import logics
 
 import bisect
 import time
 import datetime
 import itertools
-import logics
-import constants
 
 
 def forge_goods(user, cost_effect):

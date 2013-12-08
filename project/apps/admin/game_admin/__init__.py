@@ -1,3 +1,3 @@
 # coding: utf-8
 
-from gameviews import *
+from .views import *

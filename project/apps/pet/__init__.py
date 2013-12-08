@@ -1,13 +1,13 @@
 # coding: utf-8
 
-from lib.utils import sys_random as random
-from apps.public.generator import salt_generator
-from collections import defaultdict
-
 import time
 import itertools
-import logics
-import constants
+from collections import defaultdict
+
+from lib.utils import sys_random as random
+from apps.public.generator import salt_generator
+from . import logics
+from . import constants
 
 
 def add_food_effect(pet_obj, pet_detail, food_detail):

@@ -1,10 +1,10 @@
 # coding: utf-8
 
 from lib.utils import sys_random as random
+from . import constants
 
 import time
 import bisect
-import constants
 
 
 def nearby_rank(rank):

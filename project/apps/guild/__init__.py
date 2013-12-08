@@ -1,9 +1,8 @@
 # coding:utf-8
 
-import time
-from models import Guild
-from models import Guilds
 from lib.db.expressions import Incr
+from .models import Guild, Guilds
+
 
 GUILD_MASTER = 1
 GUILD_MEMBER = 99
@@ -23,7 +22,6 @@ def pre_use_guild(env):
 
     主要作用是处理公会解散时，游戏数据里的索引重置
     """
-
     user = env.user
 
     if user.game.info['guild'] and not user.guild:
@@ -35,13 +33,17 @@ def guild_index(env):
     当用户属于一个公会时返回所属公会的最近状态，
     当用户没有公会时返回全服公会列表
     """
-
     game = env.user.game
 
     if game.info['guild']:
         return guild_info(game.info['guild'])
     else:
-        return guild_intro()
+        return guild_info()
+
+
+def guild_info(guild_id=None):
+     return {}
+
 
 def guilds(env):
     """ 获取指定数量的公会
@@ -266,3 +268,5 @@ def guild_disband(env, user):
     user.game.info['guild'] = 0
     user.guild.members.reset()
     user.guild.apply4.reset()
+
+

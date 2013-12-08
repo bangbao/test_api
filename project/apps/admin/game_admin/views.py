@@ -9,7 +9,6 @@ TEMPLATE = 'admin/game/gamemain.html'
 def index(env):
     """game模块后台首页，提供UID输入
     """
-
     data = {'op': 'input', 'field': 'user'}
     return env.render(TEMPLATE, {'data': data})
 
@@ -21,7 +20,6 @@ def show(env, uid=None, field=None, msg=None):
         uid: 用户ID
         field: game模块的属性名称
     """
-
     uid = env.req.get_argument('uid', uid)
     field = env.req.get_argument('field', field)
 
@@ -48,7 +46,6 @@ def show(env, uid=None, field=None, msg=None):
 def save(env):
     """保存game模块user或者info属性的修改
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', 'user')
 
@@ -73,7 +70,6 @@ def save(env):
 def reset(env):
     """重置数据
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', 'user')
 
@@ -90,7 +86,6 @@ def reset(env):
 def getmodel(uid, env):
     """获取并处理user，加载必要的数据
     """
-
     user_app = env.import_app('user')
     u = user_app.get_user(env, int(uid))
 

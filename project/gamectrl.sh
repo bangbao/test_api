@@ -1,6 +1,6 @@
 #/bin/bash
 
-export gameenv=dev1
+export gameenv=dev
 
 P_DIR=$(pwd -P)
 

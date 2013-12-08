@@ -1,11 +1,12 @@
 # coding: utf-8
 
-from lib.utils import sys_random as random
-from apps.public import logics as publics
-
 import bisect
 import itertools
-import constants
+
+from lib.utils import sys_random as random
+from apps.public import logics as publics
+from . import constants
+
 
 
 def pet_birth(cfg_id, game_config, **kwargs):

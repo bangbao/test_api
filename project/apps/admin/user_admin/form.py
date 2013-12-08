@@ -7,7 +7,6 @@ import modellist
 class ModelDictForm(object):
     """
     """
-
     type = 'dict'
 
     def __init__(self, config):
@@ -64,6 +63,7 @@ class ModelDictForm(object):
         field_obj.reset()
 
         return True
+
 
 class ModelListForm(object):
     """

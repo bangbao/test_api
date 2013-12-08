@@ -1,8 +1,8 @@
 # coding: utf-8
 
-from lib.utils import rand_weight
-
 import itertools
+
+from lib.utils import rand_weight
 
 
 def monster_loot(monsters, game_config):

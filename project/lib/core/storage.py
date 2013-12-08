@@ -1,9 +1,9 @@
 # coding: utf-8
 
 import sys
-import MySQLdb
+import umysqldb
+import umysqldb.cursors
 import redis
-import MySQLdb.cursors
 import tornadoredis
 import logging
 from tornadoredis.client import PUB_SUB_COMMANDS
@@ -12,7 +12,7 @@ from tornadoredis.client import PUB_SUB_COMMANDS
 
 CONNECT_CLASS = {
     'redis': redis.Redis,
-    'mysql': MySQLdb.connect,
+    'mysql': umysqldb.connect,
     'tornadoredis': tornadoredis.Client,
 }
 
@@ -80,11 +80,12 @@ class ConnectPool(object):
         conn = db_direct(**db_params)
         self.connects[key] = conn
         #logging.info('connect2: %s %r' % (key, conn))
-        if field.STORAGE_TYPE == 'mysql':
-            conn.set_character_set('utf8')
-            c=conn.cursor()
-            c.execute('SET NAMES utf8;')
-            c.execute('SET CHARACTER SET utf8;')
+        # if useing MySQLdb, need to set character_set, because MySQLdb default charset is lain1
+        #if field.STORAGE_TYPE == 'mysql':
+            #conn.set_character_set('utf8')
+            #c=conn.cursor()
+            #c.execute('SET NAMES utf8;')
+            #c.execute('SET CHARACTER SET utf8;')
 
         return conn
 

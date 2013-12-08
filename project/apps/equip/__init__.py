@@ -1,16 +1,16 @@
 # coding: utf-8
 
+import time
+import bisect
+import itertools
+from collections import defaultdict
+
 from lib.utils import sys_random as random
 from lib.utils import rand_weight
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
-from collections import defaultdict
-
-import time
-import bisect
-import itertools
-import constants
-import logics
+from . import constants
+from . import logics
 
 
 def only_resolve_equip(env, equip_id, game_config):

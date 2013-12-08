@@ -1,5 +1,48 @@
 {% extends "../base.html" %}
 
+<script type="text/javascript">
+function show(obj) {
+    // 取出选择的项目
+    env_obj = document.getElementById('env');
+    env_index = env_obj.selectedIndex;
+    env_id = env_obj[env_index].value;
+
+    // 取出选择的路径
+    config_obj = document.getElementById('config_filename');
+    selectIndex = config_obj.selectedIndex;
+    config_name = config_obj[selectIndex].value;
+
+    url = "/admin/config/show/?env_id="+env_id+'&config_filename='+config_name;
+    getAjaxData(url, parseData);
+}
+
+function parseData(result) {
+    // 显示当前目录路径
+    sd_obj = document.getElementById('show_config_name');
+    sd_obj.innerText = result['config_name'];
+
+    sd_obj = document.getElementById('show_config_version');
+    sd_obj.innerText = result['config_version'];
+
+    sd_obj = document.getElementById('show_config_value');
+    sd_obj.innerText = result['config_value'];
+
+}
+
+function getAjaxData(url, callback) {
+    // 发送AJAX请求
+    xmlhttp = new (window.XMLHttpRequest || ActiveXObject)("Microsoft.XMLHTTP");
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            // 处理数据
+            json_data = JSON.parse(xmlhttp.responseText);
+            callback(json_data);
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+</script>
+
 {% block body %}
 <body>
 <h3>游戏配置：</h3>
@@ -19,7 +62,7 @@
 
 <hr>
 <form action="/admin/config/upload/" method="post" enctype="multipart/form-data">
-  <select name="env" id="env" value="" title="选择环境">
+  <select name="env" id="env" value="" title="选择环境" onchange="show(this)">
   {% for env, name in sorted(envs.iteritems()) %}
     {% if env == env_id %}
       <option value="{{ env }}" selected> {{ name }} </option>
@@ -28,12 +71,12 @@
     {% end %}
   {% end %}
   </select>
-  <select name="config_filename" id="config_filename" value="" title="选择配置名字">
+  <select name="config_filename" id="config_filename" value="" title="选择配置名字" onchange="show(this)">
   {% for filename, config_keys in sorted(configs.iteritems()) %}
      <option value="{{ filename }}"> {{ filename }} </option>
   {%  end %}
   </select>
-  <input type="file" name="config_file" id="upload_file">
+  <input type="file" name="config_file" id="upload_file" multiple>
   <input type="submit" value="上传" onclick="return confirm('上传?');">
 </form>
 <ul>
@@ -41,5 +84,16 @@
     <li>{{name}}: {{ ver }}</li>
   {% end %}
 </ul>
-</body>
+
+<hr>
+{% if config_version %}
+<p id="show_config_name">config_name: {{ config_name }} </p>
+<p id="show_config_version">config_version: {{ config_version }} </p>
+{% end }
+
+{% if config_value %}
+<textarea id="show_config_value" style="margin: 2px; height: 355px; width: 1220px;">
+    {{ config_value }}
+</textarea>
 {% end %}
+</body>

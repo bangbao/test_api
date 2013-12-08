@@ -1,21 +1,20 @@
 # coding: utf-8
 
-from collections import defaultdict
-
 import re
-import logics
 import numpy
 import itertools
+from collections import defaultdict
 
+from . import trans
 
 def wrapper_lines(seq, lines, mapping, filter_func=all):
-    trans_map = logics.group_keys(seq, mapping)
+    trans_map = trans.group_keys(seq, mapping)
 
     for row in itertools.ifilter(filter_func, lines):
         item = {}
 
         for name, factory in trans_map.iteritems():
-            item[name] = logics.trans_field(factory, row)
+            item[name] = trans.trans_field(factory, row)
 
         yield item['pk'], item
 
@@ -23,13 +22,13 @@ def wrapper_lines(seq, lines, mapping, filter_func=all):
 def mapinfo(mapping):
     def wrapper(seq, lines):
         obj = {}
-        trans_map = logics.group_keys(seq, mapping)
+        trans_map = trans.group_keys(seq, mapping)
 
         for row in lines:
             item = {}
 
             for name, factory in trans_map.iteritems():
-                item[name] = logics.trans_field(factory, row)
+                item[name] = trans.trans_field(factory, row)
 
             pk = item.pop('pk')
             item['size']['y'] -= item['useless']

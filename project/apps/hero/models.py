@@ -5,6 +5,7 @@ from lib.db.fields import ModelDict
 from lib.db.fields import ModelList
 from lib.db.metaclass import DynamicModel
 
+
 class Hero(Carrier):
     """用户卡牌常用属性
 

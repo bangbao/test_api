@@ -1,10 +1,10 @@
 # coding: utf-8
 
-from lib.db.expressions import Incr
-from models import Game
-
 import time
-import constants
+
+from lib.db.expressions import Incr
+from . import constants
+from models import Game
 
 
 def add_exp(user, exp, evolutions=None):

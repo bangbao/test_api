@@ -1,8 +1,8 @@
 # coding: utf-8
 
-import trans
-import match
-import special
+from . import trans
+from . import match
+from . import special
 
 CONFIG_FILES = {
     'hero': 'hero',
@@ -633,3 +633,4 @@ CONFIG_MAPPING = {
                         )))
     },
 }
+

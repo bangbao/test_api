@@ -1,5 +1,12 @@
 # coding: utf-8
 
+import os
+import gc
+import time
+import psutil
+import signal
+import logging
+
 from tornado.httpserver import HTTPServer
 from tornado.options import define, options
 from tornado import ioloop
@@ -10,13 +17,6 @@ from apps.handers import (APIRequestHandler,
                           AdminRequestHandler, 
                           ChatRequestHandler, 
                           preloader)
-
-import os
-import gc
-import time
-import psutil
-import signal
-import logging
 
 
 define("port", default=58500, help="run on the given port", type=int)

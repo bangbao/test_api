@@ -15901,3 +15901,279 @@
 [I 131207 23:08:17 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 31.25ms
 [I 131207 23:08:18 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 31.72ms
 [I 131207 23:08:18 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 37.59ms
+[I 131207 23:46:30 web:1635] 200 GET /admin/game/ (127.0.0.1) 12.76ms
+[I 131207 23:46:32 web:1635] 200 GET /admin/hero/ (127.0.0.1) 56.38ms
+[I 131207 23:46:33 web:1635] 200 GET /admin/user/ (127.0.0.1) 11.67ms
+[I 131207 23:46:38 web:1635] 200 GET /admin/game/show/?uid=50&field=user (127.0.0.1) 12.20ms
+[I 131207 23:46:40 web:1635] 200 GET /admin/config/ (127.0.0.1) 9.11ms
+[I 131208 00:00:19 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/config_admin/views.py modified; restarting server
+[I 131208 00:21:58 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/urls.py modified; restarting server
+[I 131208 00:21:58 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/urls.py modified; restarting server
+[I 131208 00:21:58 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/urls.py modified; restarting server
+[E 131208 00:22:02 web:1228] Uncaught exception GET /admin/config/ (127.0.0.1)
+    HTTPRequest(protocol='http', host='mdota.com', method='GET', uri='/admin/config/', version='HTTP/1.0', remote_ip='127.0.0.1', headers={'Accept-Language': 'zh-CN,zh;q=0.8', 'Accept-Encoding': 'gzip,deflate,sdch', 'X-Forwarded-For': '127.0.0.1', 'Connection': 'close', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', 'Host': 'mdota.com', 'Referer': 'http://mdota.com/admin/left/', 'Cookie': 'sign_data=2|828e4c7a94a1b899b13a6253d561b1220917e1dc', 'Environ_name': 'develop:0.0.2', 'Document_root': '/home/bangbao/mdota/test_api/project'})
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1141, in _when_complete
+        callback()
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1162, in _execute_method
+        self._when_complete(method(*self.path_args, **self.path_kwargs),
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1355, in wrapper
+        return method(self, *args, **kwargs)
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 183, in get
+        self.render_to_response()
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 177, in render_to_response
+        self.render(template, **data)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 538, in render
+        html = self.render_string(template_name, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 642, in render_string
+        t = loader.load(template_name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 338, in load
+        self.templates[name] = self._create_template(name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 366, in _create_template
+        template = Template(f.read(), name=name, loader=self)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 231, in __init__
+        self.file = _File(self, _parse(reader, self))
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 792, in _parse
+        raise ParseError("Extra {%% end %%} block on line %d" % line)
+    ParseError: Extra {% end %} block on line 57
+[E 131208 00:22:02 web:1635] 500 GET /admin/config/ (127.0.0.1) 46.10ms
+[E 131208 00:23:01 web:1228] Uncaught exception GET /admin/config/ (127.0.0.1)
+    HTTPRequest(protocol='http', host='mdota.com', method='GET', uri='/admin/config/', version='HTTP/1.0', remote_ip='127.0.0.1', headers={'Accept-Language': 'zh-CN,zh;q=0.8', 'Accept-Encoding': 'gzip,deflate,sdch', 'X-Forwarded-For': '127.0.0.1', 'Connection': 'close', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', 'Host': 'mdota.com', 'Referer': 'http://mdota.com/admin/left/', 'Cookie': 'sign_data=2|828e4c7a94a1b899b13a6253d561b1220917e1dc', 'Environ_name': 'develop:0.0.2', 'Document_root': '/home/bangbao/mdota/test_api/project'})
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1141, in _when_complete
+        callback()
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1162, in _execute_method
+        self._when_complete(method(*self.path_args, **self.path_kwargs),
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1355, in wrapper
+        return method(self, *args, **kwargs)
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 183, in get
+        self.render_to_response()
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 177, in render_to_response
+        self.render(template, **data)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 538, in render
+        html = self.render_string(template_name, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 642, in render_string
+        t = loader.load(template_name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 338, in load
+        self.templates[name] = self._create_template(name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 366, in _create_template
+        template = Template(f.read(), name=name, loader=self)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 231, in __init__
+        self.file = _File(self, _parse(reader, self))
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 792, in _parse
+        raise ParseError("Extra {%% end %%} block on line %d" % line)
+    ParseError: Extra {% end %} block on line 109
+[E 131208 00:23:01 web:1635] 500 GET /admin/config/ (127.0.0.1) 4.67ms
+[E 131208 00:23:01 web:1228] Uncaught exception GET /admin/config/ (127.0.0.1)
+    HTTPRequest(protocol='http', host='mdota.com', method='GET', uri='/admin/config/', version='HTTP/1.0', remote_ip='127.0.0.1', headers={'Accept-Language': 'zh-CN,zh;q=0.8', 'Accept-Encoding': 'gzip,deflate,sdch', 'X-Forwarded-For': '127.0.0.1', 'Connection': 'close', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', 'Host': 'mdota.com', 'Referer': 'http://mdota.com/admin/left/', 'Cookie': 'sign_data=2|828e4c7a94a1b899b13a6253d561b1220917e1dc', 'Environ_name': 'develop:0.0.2', 'Document_root': '/home/bangbao/mdota/test_api/project'})
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1141, in _when_complete
+        callback()
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1162, in _execute_method
+        self._when_complete(method(*self.path_args, **self.path_kwargs),
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1355, in wrapper
+        return method(self, *args, **kwargs)
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 183, in get
+        self.render_to_response()
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 177, in render_to_response
+        self.render(template, **data)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 538, in render
+        html = self.render_string(template_name, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 642, in render_string
+        t = loader.load(template_name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 338, in load
+        self.templates[name] = self._create_template(name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 366, in _create_template
+        template = Template(f.read(), name=name, loader=self)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 231, in __init__
+        self.file = _File(self, _parse(reader, self))
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 792, in _parse
+        raise ParseError("Extra {%% end %%} block on line %d" % line)
+    ParseError: Extra {% end %} block on line 109
+[E 131208 00:23:01 web:1635] 500 GET /admin/config/ (127.0.0.1) 6.23ms
+[E 131208 00:23:19 web:1228] Uncaught exception GET /admin/config/ (127.0.0.1)
+    HTTPRequest(protocol='http', host='mdota.com', method='GET', uri='/admin/config/', version='HTTP/1.0', remote_ip='127.0.0.1', headers={'Accept-Language': 'zh-CN,zh;q=0.8', 'Accept-Encoding': 'gzip,deflate,sdch', 'X-Forwarded-For': '127.0.0.1', 'Connection': 'close', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', 'Host': 'mdota.com', 'Referer': 'http://mdota.com/admin/left/', 'Cookie': 'sign_data=2|828e4c7a94a1b899b13a6253d561b1220917e1dc', 'Environ_name': 'develop:0.0.2', 'Document_root': '/home/bangbao/mdota/test_api/project'})
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1141, in _when_complete
+        callback()
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1162, in _execute_method
+        self._when_complete(method(*self.path_args, **self.path_kwargs),
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 1355, in wrapper
+        return method(self, *args, **kwargs)
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 183, in get
+        self.render_to_response()
+      File "/home/bangbao/mdota/test_api/project/apps/handers.py", line 177, in render_to_response
+        self.render(template, **data)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 538, in render
+        html = self.render_string(template_name, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/web.py", line 642, in render_string
+        t = loader.load(template_name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 338, in load
+        self.templates[name] = self._create_template(name)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 366, in _create_template
+        template = Template(f.read(), name=name, loader=self)
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 231, in __init__
+        self.file = _File(self, _parse(reader, self))
+      File "/usr/local/lib/python2.7/dist-packages/tornado-3.1.1-py2.7.egg/tornado/template.py", line 792, in _parse
+        raise ParseError("Extra {%% end %%} block on line %d" % line)
+    ParseError: Extra {% end %} block on line 109
+[E 131208 00:23:19 web:1635] 500 GET /admin/config/ (127.0.0.1) 4.88ms
+[I 131208 00:23:26 web:1635] 200 GET /admin/config/ (127.0.0.1) 11.35ms
+[I 131208 00:25:05 web:1635] 200 GET /admin/config/ (127.0.0.1) 11.26ms
+[I 131208 00:25:06 web:1635] 200 GET /admin/config/ (127.0.0.1) 12.18ms
+[I 131208 00:25:08 web:1635] 200 GET /admin/config/ (127.0.0.1) 11.00ms
+[I 131208 00:25:39 web:1635] 200 GET /admin/game/show/?uid=22&field=user (127.0.0.1) 50.59ms
+[I 131208 00:27:06 web:1635] 200 GET /admin/config/ (127.0.0.1) 8.25ms
+[I 131208 00:27:07 web:1635] 200 GET /admin/config/ (127.0.0.1) 6.74ms
+[I 131208 00:29:57 web:1635] 200 GET /admin/config/ (127.0.0.1) 8.29ms
+[I 131208 00:30:26 web:1635] 200 GET /admin/config/ (127.0.0.1) 8.58ms
+[I 131208 00:30:36 web:1635] 200 GET /admin/ (127.0.0.1) 20.62ms
+[I 131208 00:30:36 web:1635] 200 GET /admin/left/ (127.0.0.1) 1.00ms
+[I 131208 00:30:36 web:1635] 200 GET /admin/user/ (127.0.0.1) 8.38ms
+[I 131208 00:30:39 web:1635] 200 GET /admin/config/ (127.0.0.1) 8.42ms
+[I 131208 00:33:10 web:1635] 200 GET /admin/config/ (127.0.0.1) 9.38ms
+[I 131208 00:34:36 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 155.09ms
+[I 131208 10:14:26 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 236.58ms
+[I 131208 10:17:32 web:1635] 200 GET /admin/ (127.0.0.1) 3.74ms
+[I 131208 10:17:32 web:1635] 304 GET /admin/left/ (127.0.0.1) 3.23ms
+[I 131208 10:17:32 web:1635] 200 GET /admin/user/ (127.0.0.1) 14.03ms
+[I 131208 10:49:25 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:49:25 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:49:25 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:49:25 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:51:47 web:1635] 301 GET /admin (127.0.0.1) 0.45ms
+[I 131208 10:51:47 web:1635] 200 GET /admin/ (127.0.0.1) 3.00ms
+[I 131208 10:51:47 web:1635] 200 GET /admin/left/ (127.0.0.1) 9.18ms
+[I 131208 10:51:47 web:1635] 200 GET /admin/user/ (127.0.0.1) 14.86ms
+[I 131208 10:52:03 web:1635] 200 GET /admin/game/show/?uid=2&field=user (127.0.0.1) 15.18ms
+[I 131208 10:52:05 web:1635] 200 GET /admin/game/show/?field=info&uid=2&next_op=show (127.0.0.1) 18.68ms
+[I 131208 10:52:07 web:1635] 200 GET /admin/user/ (127.0.0.1) 4.95ms
+[I 131208 10:52:11 web:1635] 200 GET /admin/game/show/?uid=22&field=user (127.0.0.1) 18.15ms
+[I 131208 10:52:13 web:1635] 200 GET /admin/game/show/?field=info&uid=22&next_op=show (127.0.0.1) 12.76ms
+[I 131208 10:52:16 web:1635] 200 GET /admin/user/ (127.0.0.1) 13.82ms
+[I 131208 10:52:59 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:52:59 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:52:59 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:52:59 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 10:53:03 web:1635] 200 GET /admin/user/ (127.0.0.1) 18.87ms
+[I 131208 10:53:05 web:1635] 200 GET /admin/user/ (127.0.0.1) 18.13ms
+[I 131208 10:53:14 web:1635] 200 GET /admin/config/ (127.0.0.1) 13.17ms
+[I 131208 10:55:08 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/config_admin/views.py modified; restarting server
+[I 131208 16:15:13 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:15:13 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:15:14 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:15:14 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:15:41 web:1635] 301 GET /admin (127.0.0.1) 0.42ms
+[I 131208 16:15:41 web:1635] 200 GET /admin/ (127.0.0.1) 6.81ms
+[I 131208 16:15:43 web:1635] 200 GET /admin/left/ (127.0.0.1) 7.03ms
+[I 131208 16:15:43 web:1635] 200 GET /admin/user/ (127.0.0.1) 17.17ms
+[I 131208 16:15:53 web:1635] 200 GET /admin/game/show/?uid=45&field=user (127.0.0.1) 29.54ms
+[I 131208 16:15:55 web:1635] 200 GET /admin/game/show/?field=info&uid=45&next_op=show (127.0.0.1) 16.32ms
+[I 131208 16:16:10 web:1635] 200 POST /admin/game/save/ (127.0.0.1) 68.08ms
+[I 131208 16:16:12 web:1635] 200 GET /admin/user/ (127.0.0.1) 7.20ms
+[I 131208 16:25:18 web:1635] 304 GET /admin/ (127.0.0.1) 2.39ms
+[I 131208 16:25:19 web:1635] 304 GET /admin/left/ (127.0.0.1) 2.43ms
+[I 131208 16:25:19 web:1635] 200 GET /admin/user/ (127.0.0.1) 5.43ms
+[I 131208 16:36:19 web:1635] 200 GET /admin/user/ (127.0.0.1) 13.65ms
+[I 131208 16:36:21 web:1635] 200 GET /admin/user/ (127.0.0.1) 14.50ms
+[I 131208 16:38:28 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:38:28 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:38:28 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:38:28 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:50:30 web:1635] 304 GET /admin/ (127.0.0.1) 6.22ms
+[I 131208 16:50:31 web:1635] 304 GET /admin/left/ (127.0.0.1) 6.91ms
+[I 131208 16:50:31 web:1635] 200 GET /admin/user/ (127.0.0.1) 20.37ms
+[I 131208 16:51:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 16:51:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 16:51:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 16:51:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 16:52:10 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:52:10 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:52:10 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:52:10 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:55:12 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:55:12 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:55:12 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:55:12 autoreload:186] /home/bangbao/mdota/test_api/project/lib/core/storage.py modified; restarting server
+[I 131208 16:55:18 web:1635] 200 GET /admin/user/ (127.0.0.1) 21.84ms
+[I 131208 16:55:25 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 211.97ms
+[I 131208 16:55:32 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 40.35ms
+[I 131208 16:55:39 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 45.00ms
+[I 131208 16:55:46 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 91.86ms
+[I 131208 16:56:42 web:1635] 200 POST /admin/hero/add/ (127.0.0.1) 3363.86ms
+[I 131208 16:58:28 web:1635] 304 GET /admin/ (127.0.0.1) 2.45ms
+[I 131208 16:58:53 web:1635] 304 GET /admin/left/ (127.0.0.1) 2.58ms
+[I 131208 16:58:53 web:1635] 200 GET /admin/user/ (127.0.0.1) 19.41ms
+[I 131208 17:00:43 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 1114.55ms
+[I 131208 17:00:58 web:1635] 200 GET /admin/user/ (127.0.0.1) 19.42ms
+[I 131208 17:01:04 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 1070.72ms
+[I 131208 17:04:07 web:1635] 304 GET /admin/ (127.0.0.1) 2.82ms
+[I 131208 17:04:09 web:1635] 304 GET /admin/left/ (127.0.0.1) 2.59ms
+[I 131208 17:04:09 web:1635] 200 GET /admin/user/ (127.0.0.1) 12.84ms
+[I 131208 17:04:15 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 1090.95ms
+[I 131208 17:09:07 web:1635] 304 GET /admin/ (127.0.0.1) 2.07ms
+[I 131208 17:09:15 web:1635] 304 GET /admin/ (127.0.0.1) 2.17ms
+[I 131208 17:09:18 web:1635] 304 GET /admin/left/ (127.0.0.1) 0.86ms
+[I 131208 17:09:18 web:1635] 200 GET /admin/user/ (127.0.0.1) 12.00ms
+[I 131208 17:09:22 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 55.09ms
+[I 131208 17:09:33 web:1635] 200 POST /admin/hero/delete/ (127.0.0.1) 149.12ms
+[I 131208 17:09:37 web:1635] 304 GET /admin/ (127.0.0.1) 0.73ms
+[I 131208 17:09:37 web:1635] 304 GET /admin/left/ (127.0.0.1) 0.86ms
+[I 131208 17:09:37 web:1635] 200 GET /admin/user/ (127.0.0.1) 11.05ms
+[I 131208 17:09:40 web:1635] 200 GET /admin/user/ (127.0.0.1) 13.01ms
+[I 131208 17:09:51 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 52.97ms
+[I 131208 17:14:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/hero_admin/heroviews.py modified; restarting server
+[I 131208 17:14:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/hero_admin/heroviews.py modified; restarting server
+[I 131208 17:14:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/hero_admin/heroviews.py modified; restarting server
+[I 131208 17:14:44 autoreload:186] /home/bangbao/mdota/test_api/project/apps/admin/hero_admin/heroviews.py modified; restarting server
+[I 131208 17:17:12 web:1635] 200 GET /admin/user/ (127.0.0.1) 19.99ms
+[I 131208 17:17:15 web:1635] 200 GET /admin/game/show/?uid=2&field=user (127.0.0.1) 15.29ms
+[I 131208 17:17:18 web:1635] 200 GET /admin/game/show/?field=info&uid=2&next_op=show (127.0.0.1) 24.51ms
+[I 131208 17:23:45 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 212.50ms
+[I 131208 17:23:48 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 43.36ms
+[I 131208 17:23:49 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 37.39ms
+[I 131208 17:23:50 web:1635] 200 GET /api/?method=hero.heros&user_token=test (127.0.0.1) 41.29ms
+[I 131208 17:24:35 autoreload:186] /home/bangbao/mdota/test_api/project/apps/hero/logics.py modified; restarting server
+[I 131208 17:24:35 autoreload:186] /home/bangbao/mdota/test_api/project/apps/hero/logics.py modified; restarting server
+[I 131208 17:24:35 autoreload:186] /home/bangbao/mdota/test_api/project/apps/hero/logics.py modified; restarting server
+[I 131208 17:24:35 autoreload:186] /home/bangbao/mdota/test_api/project/apps/hero/logics.py modified; restarting server
+[I 131208 17:57:20 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 17:57:20 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 17:57:20 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 17:57:20 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/__init__.py modified; restarting server
+[I 131208 17:58:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 17:58:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 17:58:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 17:58:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 17:58:40 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 17:58:40 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 17:58:40 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 17:58:40 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:03:56 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:03:56 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:03:56 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:03:56 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:04:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:04:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:04:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:04:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:19:55 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:19:55 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:19:55 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:19:55 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/special.py modified; restarting server
+[I 131208 18:21:31 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:21:31 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:21:31 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:21:31 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:25:51 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:25:51 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:25:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:25:52 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:36:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:36:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:36:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:36:07 autoreload:186] /home/bangbao/mdota/test_api/project/apps/config/logics.py modified; restarting server
+[I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
+[I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
+[I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
+[I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server

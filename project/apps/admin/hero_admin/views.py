@@ -25,7 +25,6 @@ def show(env, uid=None, field=None, msg=None):
     field = env.req.get_argument('field', field)
 
     u = getmodel(uid, env)
-
     field_obj = getattr(u.hero, field)
 
     hero_app = env.import_app('hero')
@@ -91,12 +90,10 @@ def show(env, uid=None, field=None, msg=None):
 def save(env):
     """保存hero模块data属性的修改
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', 'data')
 
     u = getmodel(uid, env)
-
     field_obj = getattr(u.hero, field)
     form_data = Form(env, field, field_obj, constants.CONFIG, env.req).mdictdata()
 
@@ -243,14 +240,13 @@ def add(env):
 
             num -= 1
 
-    env.storage.save(u.hero)
+    u.save_all()
 
     return show(env, uid=uid, field=field, msg=handle.MSG['SUCCESS'])
 
 def reset(env):
     """重置或清空数据
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', '')
 
@@ -267,7 +263,6 @@ def reset(env):
 def getmodel(uid, env):
     """获取并处理user，加载必要的数据
     """
-
     user_app = env.import_app('user')
     u = user_app.get_user(env, int(uid))
 
@@ -276,3 +271,5 @@ def getmodel(uid, env):
     u.game.load_all(env)
 
     return u
+
+

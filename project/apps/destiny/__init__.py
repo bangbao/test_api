@@ -1,9 +1,9 @@
 # coding: utf-8
 
-import itertools
+from . import destinys
+from . import constants
 
-import destinys
-import constants
+import itertools
 
 
 def add_destiny_effect(user, formation):

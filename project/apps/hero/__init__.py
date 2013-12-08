@@ -1,16 +1,16 @@
 # coding: utf-8
 
+import time
+import bisect
+import itertools
+
 from lib.utils import sys_random as random
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
 from apps import battle as battle_app
-from models import Hero
-
-import time
-import bisect
-import itertools
-import logics
-import constants
+from . import constants
+from . import logics
+from .models import Hero
 
 
 def format_heros(user, hero_ids, filter_func=None):

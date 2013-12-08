@@ -1,9 +1,8 @@
 # coding: utf-8
 
 from lib.db.fields import ModelDict
-from models import User, NewUser
-
-import logics
+from . import logics
+from .models import User, NewUser
 
 COOKIE_AUTH_KEY = 'sign_data'
 

@@ -2,7 +2,8 @@
 
 import hashlib
 import itertools
-import constants
+
+from . import constants
 
 
 def rectify_team(team):

@@ -4,8 +4,10 @@ from __future__ import with_statement
 
 import os
 import csv
-import transfer
 import logging
+
+from . import trans
+from .transfer import CONFIG_MAPPING
 
 
 def import_file(filename, mapping):
@@ -28,7 +30,7 @@ def import_file(filename, mapping):
             if callable(mapping):  # special
                 return mapping(row, fp)
 
-            trans_map = group_keys(row, mapping)
+            trans_map = trans.group_keys(row, mapping)
 
             for row in fp:
                 if not any(row):
@@ -38,7 +40,7 @@ def import_file(filename, mapping):
 
                 for name, factory in trans_map.iteritems():
                     try:
-                        item[name] = trans_field(factory, row)
+                        item[name] = trans.trans_field(factory, row)
                     except Exception, e:
                         print name
                         logging.info("%s \t %s" % (name, e))
@@ -54,51 +56,6 @@ def import_file(filename, mapping):
             print 'line_num:', fp.line_num
             print 'row:', row
             raise e
-
-
-def group_keys(keys, mapping):
-    """转换配置文件列标题
-
-    Args:
-        keys: 配置文件列标题
-        mapping: 配置映射关系
-
-    Returns:
-        每个字段的转换关系集合
-    """
-    fields = {}
-
-    for field, (match, trans) in mapping.iteritems():
-        params = []
-
-        for i, key in enumerate(keys):
-            if match(key):
-                params.append(i)
-
-        if not params:
-            raise KeyError, "file not found %s" % field
-
-        fields[field] = (trans, sorted(params))
-
-    return fields
-
-
-def trans_field(factory, row):
-    """解析每一行数据
-
-    Args:
-        factory: 工厂方法
-        row: 行数据
-
-    Returns:
-        解析后的数据
-    """
-    worker, params = factory
-    assert callable(worker)
-
-    args = [row[idx] for idx in params]
-
-    return worker(*args)
 
 
 def static_import(env, filepath, save=True):
@@ -127,5 +84,6 @@ def static_import(env, filepath, save=True):
 if __name__ == '__main__':
     filename = r'E:\mini_dota\cehua\csv\map_stage.csv'
     # filename = '/Users/zhangjames/Work/rekoo/cehua/导入CSV/map_info.csv'
-    print import_file(filename, transfer.CONFIG_MAPPING['chapter_stage'])
+    print import_file(filename, CONFIG_MAPPING['chapter_stage'])
+
 

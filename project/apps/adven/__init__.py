@@ -1,9 +1,10 @@
 # coding: utf-8
 
-from models import Adven
-
 import itertools
-import logics
+
+from . import logics
+from .models import Adven
+
 
 
 def chapter_over(user, chapter, stage, select, win=False, grade=1):

@@ -1,13 +1,14 @@
 # coding: utf-8
 
+import time
+
 from lib.core.environ import Environ
 from lib.db.fields import ModelConfig
-from models import Config
-from caches import AppCacheConfig
+from . import logics
+from . import transfer
+from .models import Config
+from .caches import AppCacheConfig
 
-import time
-import logics
-import transfer
 
 game_configs = {}
 

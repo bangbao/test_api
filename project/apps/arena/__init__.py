@@ -4,13 +4,13 @@ from lib.utils import rand_weight
 from lib.db.expressions import Incr
 from apps.public import logics as publics
 from apps import config as config_app
-from models import Arena
+from . import logics
+from . import constants
+from .models import Arena
 
 import time
 import datetime
 import itertools
-import logics
-import constants
 
 
 def give_award(user, award):

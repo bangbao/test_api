@@ -1,7 +1,8 @@
 # coding: utf-8
 
+from . import constants
+
 import itertools
-import constants
 import ujson
 
 

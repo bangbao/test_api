@@ -8,6 +8,7 @@ URL_MAPPING = {
     '/admin/config/': 'config_admin.index',
     '/admin/config/upload/': 'config_admin.upload',
     '/admin/config/reload/': 'config_admin.reloadall',
+    '/admin/config/show/': 'config_admin.show',
 
     '/admin/user/': 'user_admin.index',
     '/admin/user/reset/': 'user_admin.reset',

@@ -1,13 +1,8 @@
 # coding: utf-8
 
-import MySQLdb
-import MySQLdb.cursors
+import umysqldb
 
-mysql_host = 'localhost'
-mysql_port = 3306
-mysql_user = 'root'
-mysql_passwd = '510312'
-mysql_cursorclass = MySQLdb.cursors.DictCursor
+cursorclass = umysqldb.cursors.DictCursor
 
 
 DATABASES = {
@@ -18,7 +13,7 @@ DATABASES = {
         'db': 'lose',
         'port': 3306,
         'unix_socket': '/var/run/mysqld/mysqld.sock',
-        'cursorclass': MySQLdb.cursors.DictCursor,
+        'cursorclass': cursorclass,
     },
     'redis': {
         'host': 'localhost',
@@ -36,7 +31,7 @@ DATABASES = {
         'db': 'auth',
         'port': 3306,
         'unix_socket': '/var/run/mysqld/mysqld.sock',
-        'cursorclass': MySQLdb.cursors.DictCursor,
+        'cursorclass': cursorclass,
     },
     'clusters': [
        {
@@ -46,7 +41,7 @@ DATABASES = {
             'db': 'cm1',
             'port': 3306,
             'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': MySQLdb.cursors.DictCursor,
+            'cursorclass': cursorclass,
        },
        {
             'host': 'localhost',
@@ -55,7 +50,7 @@ DATABASES = {
             'db': 'cm2',
             'port': 3306,
             'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': MySQLdb.cursors.DictCursor,
+            'cursorclass': cursorclass,
        },
        {
             'host': 'localhost',
@@ -64,7 +59,7 @@ DATABASES = {
             'db': 'cm3',
             'port': 3306,
             'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': MySQLdb.cursors.DictCursor,
+            'cursorclass': cursorclass,
        },
        {
             'host': 'localhost',
@@ -73,7 +68,7 @@ DATABASES = {
             'db': 'cm4',
             'port': 3306,
             'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': MySQLdb.cursors.DictCursor,
+            'cursorclass': cursorclass,
        }
     ],
 }

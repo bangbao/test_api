@@ -2,8 +2,8 @@
 
 from lib.utils import sys_random as random
 from lib.utils import rand_weight
+from . import constants
 
-import constants
 import itertools
 
 

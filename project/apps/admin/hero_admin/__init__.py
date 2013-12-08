@@ -1,3 +1,3 @@
 # coding: utf-8
 
-from heroviews import *
+from .views import *

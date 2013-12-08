@@ -1,16 +1,16 @@
 # coding: utf-8
 
 from __future__ import with_statement
+import json
 
 from lib.core.environ import ShellEnviron
-from apps.settings import ENVIRONS
 from apps import config as config_app
+from apps.settings import ENVIRONS
 from apps.config.transfer import FILE_CONFIGS, CONFIG_MAPPING
+from . import constants
 
-import constants
 
-
-def index(env):
+def index(env, config_name='', config_version=None, config_value=None):
     """后台配置首页面
     """
     envs = {}
@@ -22,7 +22,28 @@ def index(env):
                                                   'configs': FILE_CONFIGS,
                                                   'game_config': env.game_config,
                                                   'game_configs': {},
+                                                  'config_name': config_name,
+                                                  'config_version': config_version,
+                                                  'config_value': config_value,
                                                 })
+
+def show(env):
+    """动态显示配置内容
+    """
+    env_id = env.req.get_argument('env_id')
+    config_filename = env.req.get_argument('config_filename')
+    new_env = shell_env(env_id)
+
+    config_keys = FILE_CONFIGS[config_filename]
+    config_name = config_keys[0]
+    config_version = 11111111
+    config_value = env.game_config[config_name]
+
+    return json.dumps({
+        'config_name': config_name, 
+        'config_verison': config_version, 
+        'config_value': config_value
+    })
 
 def upload(env):
     """上传配置文件
