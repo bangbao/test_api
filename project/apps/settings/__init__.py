@@ -13,12 +13,14 @@ LOGS_ROOT = os.path.join(PROJECT_ROOT, 'logs')
 TMP_ROOT = os.path.join(PROJECT_ROOT, 'tmp')
 TEMPLATE_ROOT = os.path.join(PROJECT_ROOT, 'templates')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+SCRIPT_ROOT = os.path.join(PROJECT_ROOT, 'script')
+LUA_ROOT = os.path.join(SCRIPT_ROOT, 'lua')
 
 
 ENVIRONS = {
     'develop:0.0.2': (PROJECT_ROOT, 1),
-    #'develop:0.0.1': (PROJECT_ROOT, 2),
-    #'environ': (PROJECT_ROOT, 4),
+    'develop:0.0.1': (PROJECT_ROOT, 2),
+    'environ': (PROJECT_ROOT, 4),
 }
 
 execfile(os.path.join(APP_ROOT, 'settings', '%s.py' % ENVIRONMENT), globals(), locals())
