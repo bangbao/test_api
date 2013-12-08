@@ -16177,3 +16177,31 @@
 [I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
 [I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
 [I 131208 18:42:32 autoreload:186] /home/bangbao/mdota/test_api/project/wsgi.py modified; restarting server
+[I 131208 19:00:27 web:1635] 304 GET /admin/ (127.0.0.1) 6.96ms
+[I 131208 19:00:27 web:1635] 304 GET /admin/left/ (127.0.0.1) 2.30ms
+[I 131208 19:00:27 web:1635] 200 GET /admin/user/ (127.0.0.1) 40.30ms
+[I 131208 19:00:33 web:1635] 200 GET /admin/game/show/?uid=2&field=user (127.0.0.1) 110.11ms
+[I 131208 19:00:35 web:1635] 200 GET /admin/game/show/?field=info&uid=2&next_op=show (127.0.0.1) 17.88ms
+[I 131208 19:00:44 web:1635] 200 POST /admin/game/save/ (127.0.0.1) 90.89ms
+[I 131208 19:00:47 web:1635] 200 GET /admin/user/ (127.0.0.1) 7.45ms
+[I 131208 19:00:50 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 146.53ms
+[I 131208 19:00:53 web:1635] 200 GET /admin/hero/show/?field=equips&uid=2&next_op=show (127.0.0.1) 42.35ms
+[I 131208 19:00:55 web:1635] 200 GET /admin/hero/show/?field=goblins&uid=2&next_op=show (127.0.0.1) 47.81ms
+[I 131208 19:00:56 web:1635] 200 GET /admin/hero/show/?field=pets&uid=2&next_op=show (127.0.0.1) 50.28ms
+[I 131208 19:00:58 web:1635] 200 GET /admin/hero/show/?field=items&uid=2&next_op=show (127.0.0.1) 44.05ms
+[I 131208 19:00:59 web:1635] 200 GET /admin/hero/show/?field=materials&uid=2&next_op=show (127.0.0.1) 38.36ms
+[I 131208 19:01:00 web:1635] 200 GET /admin/hero/show/?field=data&uid=2&next_op=show (127.0.0.1) 39.57ms
+[I 131208 19:01:05 web:1635] 200 GET /admin/user/ (127.0.0.1) 7.97ms
+[I 131208 19:01:10 web:1635] 200 GET /admin/game/show/?uid=2&field=user (127.0.0.1) 4.39ms
+[I 131208 19:01:12 web:1635] 200 GET /admin/game/show/?field=info&uid=2&next_op=show (127.0.0.1) 8.39ms
+[I 131208 19:01:15 web:1635] 200 GET /admin/game/show/?field=user&uid=2&next_op=show (127.0.0.1) 14.34ms
+[I 131208 19:01:17 web:1635] 200 GET /admin/user/ (127.0.0.1) 4.24ms
+[I 131208 19:01:19 web:1635] 200 GET /admin/hero/show/?uid=2&field=heros (127.0.0.1) 41.73ms
+[I 131208 19:01:26 web:1635] 200 GET /admin/user/ (127.0.0.1) 12.48ms
+[I 131208 19:01:28 web:1635] 200 GET /admin/game/show/?uid=2&field=user (127.0.0.1) 10.46ms
+[I 131208 19:01:33 web:1635] 200 POST /admin/game/save/ (127.0.0.1) 51.28ms
+[I 131208 19:01:48 web:1635] 200 GET /admin/user/ (127.0.0.1) 4.72ms
+[I 131208 19:05:19 autoreload:186] /home/bangbao/mdota/test_api/project/apps/user/models.py modified; restarting server
+[I 131208 19:05:19 autoreload:186] /home/bangbao/mdota/test_api/project/apps/user/models.py modified; restarting server
+[I 131208 19:05:19 autoreload:186] /home/bangbao/mdota/test_api/project/apps/user/models.py modified; restarting server
+[I 131208 19:05:19 autoreload:186] /home/bangbao/mdota/test_api/project/apps/user/models.py modified; restarting server

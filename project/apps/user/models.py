@@ -14,6 +14,7 @@ USER_DATABASE = 'auth'
 USER_MODEL_NAME = 'user'
 FIELD_KEY = 'data'
 
+
 class CarrierUser(Carrier):
     def init(self):
         self.data = ModelDict({
@@ -21,7 +22,7 @@ class CarrierUser(Carrier):
                         'password': '',
                         'salt': '',
                         'token': ''})
-
+            
 
 class NewUser(CarrierUser):
     __metaclass__ = DynamicModel
