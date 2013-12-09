@@ -111,6 +111,7 @@ class APIRequestHandler(UserMixIn, BaseRequestHandler):
                                 'headers': {},
                             }, ensure_ascii=False))
         finally:
+            self.set_header('Content-Type', 'application/json; charset=UTF-8')
             self.finish()
             # 手动删除apienviron对象
             del self.env
