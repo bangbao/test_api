@@ -252,3 +252,4 @@ def adven_cost(user, cost):
 
     return cost_energy
 
+

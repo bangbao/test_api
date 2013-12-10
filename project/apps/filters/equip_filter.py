@@ -5,6 +5,7 @@ from apps.notify import constants as notices
 from apps.public import logics as publics
 
 
+@notify_app.checker
 def team_equip(env):
     """查看编队装备
     """
@@ -20,6 +21,7 @@ def team_equip(env):
     user.load_all()
 
 
+@notify_app.checker
 def load_equip(env):
     """编队位置装载装备
     """
@@ -35,9 +37,22 @@ def load_equip(env):
     user_hero.load_heros(keys=team)
     user.load_all()
 
-    return check_load_equip(env)
+    equips_set = set(env.user.hero.equips)
+    equip_app = env.import_app('equip')
+
+    data = {}
+    for pos in equip_app.constants.EQUIP_TEAM_POS_KEYS:
+        pos_set = set(env.req.get_arguments(pos))
+
+        if not pos_set.issubset(equips_set):
+            return notices.EQUIP_NOT_EXISTS
+
+        data[pos] = pos_set
+
+    env.params['data'] = data
 
 
+@notify_app.checker
 def pre_strengthen_equip(env):
     """强化装备前页面
     """
@@ -54,6 +69,7 @@ def pre_strengthen_equip(env):
     user.load_all()
 
 
+@notify_app.checker
 def strengthen_equip(env):
     """强化装备
     """
@@ -71,148 +87,7 @@ def strengthen_equip(env):
     user_hero.load_heros(keys=team)
     user.load_all()
 
-    env.params['equip_id'] = equip_id
-
-    return check_strengthen_equip(env, equip_id, env.game_config)
-
-
-def pre_resolve_equip(env):
-    """分解装备前页面
-    """
-    user = env.user
-    user.game.load_equip()
-    user.game.load(env)
-
-    hero_app = env.import_app('hero')
-    team = hero_app.team_get(user)
-
-    user_hero = user.hero
-    user_hero.load_equips()
-    user_hero.load_heros(keys=team)
-    user_hero.load_materials()
-    user.load_all()
-
-
-def resolve_equip(env):
-    """分解装备
-    """
-    equip_id = env.req.get_argument('equip_id', '')
-    auto = env.req.get_argument('auto', '')
-
-    user = env.user
-    user.game.load_equip()
-    user.game.load(env)
-
-    hero_app = env.import_app('hero')
-    team = hero_app.team_get(user)
-
-    user_hero = user.hero
-    user_hero.load_equips()
-    user_hero.load_heros(keys=team)
-    user_hero.load_materials()
-    user.load_all()
-
-    env.params['equip_id'] = equip_id
-    env.params['auto'] = auto
-
-    return check_resolve_equip(env, equip_id, env.game_config, auto)
-
-
-def pre_merge_equip(env):
-    """合成装备前页面
-    """
-    user = env.user
-    user.game.load_equip()
-    user.game.load(env)
-
-    hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
-
-    user_hero = user.hero
-    user_hero.load_equips()
-    user_hero.load_heros(keys=team)
-    user.load_all()
-
-
-def merge_equip(env):
-    """合成装备
-    """
-    cfg_id = int(env.req.get_argument('cfg_id'))
-
-    user = env.user
-    user.game.load_equip()
-    user.game.load(env)
-
-    hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
-
-    user_hero = user.hero
-    user_hero.load_equips()
-    user_hero.load_heros(keys=team)
-    user.load_all()
-
-    env.params['cfg_id'] = cfg_id
-
-    return check_merge_equip(env, cfg_id, env.game_config)
-
-
-def sell_equip(env):
-    """装备卖出
-    """
-    elements = set(env.req.get_arguments('elements'))
-
-    user = env.user
-    user.game.load_equip()
-    user.game.load(env)
-
-    hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
-
-    user_hero = user.hero
-    user_hero.load_equips()
-    user_hero.load_heros(keys=team)
-    user.load_all()
-
-    env.params['elements'] = elements
-
-    return check_sell_equip(env, elements, env.game_config)
-
-
-def clear_equip(env):
-    """清空装备cd时间
-    """
-    env.user.load_all()
-
-
-def ratio_equip(env):
-    """改变装备强化成功率
-    """
-    env.user.load_all()
-
-
-@notify_app.checker
-def check_load_equip(env):
-    """检查装载装备
-    """
-    equips_set = set(env.user.hero.equips)
-    equip_app = env.import_app('equip')
-
-    data = {}
-    for pos in equip_app.constants.EQUIP_TEAM_POS_KEYS:
-        pos_set = set(env.req.get_arguments(pos))
-
-        if not pos_set.issubset(equips_set):
-            return notices.EQUIP_NOT_EXISTS
-
-        data[pos] = pos_set
-
-    env.params['data'] = data
-
-
-@notify_app.checker
-def check_strengthen_equip(env, equip_id, game_config):
-    """检查装备是否可以强化
-    """
+    game_config = env.game_config
     user_game = env.user.game
     user_hero = env.user.hero
     equip_app = env.import_app('equip')
@@ -234,11 +109,99 @@ def check_strengthen_equip(env, equip_id, game_config):
     if user_game.user['gold'] < config[detail['star']]['need']:
         return notices.GOLD_NOT_ENOUGH
 
+    env.params['equip_id'] = equip_id
+
 
 @notify_app.checker
-def check_merge_equip(env, cfg_id, game_config):
-    """检查合成装备
+def pre_resolve_equip(env):
+    """分解装备前页面
     """
+    user = env.user
+    user.game.load_equip()
+    user.game.load(env)
+
+    hero_app = env.import_app('hero')
+    team = hero_app.team_get(user)
+
+    user_hero = user.hero
+    user_hero.load_equips()
+    user_hero.load_heros(keys=team)
+    user_hero.load_materials()
+    user.load_all()
+
+
+@notify_app.checker
+def resolve_equip(env):
+    """分解装备
+    """
+    equip_id = env.req.get_argument('equip_id', '')
+    auto = env.req.get_argument('auto', '')
+
+    user = env.user
+    user.game.load_equip()
+    user.game.load(env)
+
+    hero_app = env.import_app('hero')
+    team = hero_app.team_get(user)
+
+    user_hero = user.hero
+    user_hero.load_equips()
+    user_hero.load_heros(keys=team)
+    user_hero.load_materials()
+    user.load_all()
+
+    if not auto:
+        equip_app = env.import_app('equip')
+        obj = user.hero.equips.get(equip_id)
+    
+        if not obj:
+            return notices.EQUIP_NOT_EXISTS
+    
+        used_equips = equip_app.get_used_equip(user)
+    
+        if equip_id in used_equips:
+            return notices.EQUIP_RESOLVE_IN_TEAM
+
+    env.params['equip_id'] = equip_id
+    env.params['auto'] = auto
+
+
+@notify_app.checker
+def pre_merge_equip(env):
+    """合成装备前页面
+    """
+    user = env.user
+    user.game.load_equip()
+    user.game.load(env)
+
+    hero_app = env.import_app('hero')
+    team = hero_app.team_get(env.user)
+
+    user_hero = user.hero
+    user_hero.load_equips()
+    user_hero.load_heros(keys=team)
+    user.load_all()
+
+
+@notify_app.checker
+def merge_equip(env):
+    """合成装备
+    """
+    cfg_id = int(env.req.get_argument('cfg_id'))
+
+    user = env.user
+    user.game.load_equip()
+    user.game.load(env)
+
+    hero_app = env.import_app('hero')
+    team = hero_app.team_get(env.user)
+
+    user_hero = user.hero
+    user_hero.load_equips()
+    user_hero.load_heros(keys=team)
+    user.load_all()
+
+    game_config = env.game_config
     user_game = env.user.game
     equip_app = env.import_app('equip')
 
@@ -256,12 +219,27 @@ def check_merge_equip(env, cfg_id, game_config):
         return notices.EQUIP_ELEMENTS_NOT_ENOUGH
 
     env.params['elements'] = elements
+    env.params['cfg_id'] = cfg_id
 
 
 @notify_app.checker
-def check_sell_equip(env, elements):
-    """检查装备售卖
+def sell_equip(env):
+    """装备卖出
     """
+    elements = set(env.req.get_arguments('elements'))
+
+    user = env.user
+    user.game.load_equip()
+    user.game.load(env)
+
+    hero_app = env.import_app('hero')
+    team = hero_app.team_get(env.user)
+
+    user_hero = user.hero
+    user_hero.load_equips()
+    user_hero.load_heros(keys=team)
+    user.load_all()
+
     can_sells = []
     user_hero = env.user.hero
     equip_app = env.import_app('equip')
@@ -284,23 +262,15 @@ def check_sell_equip(env, elements):
 
 
 @notify_app.checker
-def check_resolve_equip(env, equip_id, game_config, auto):
-    """检查分解装备
+def clear_equip(env):
+    """清空装备cd时间
     """
-    user = env.user
+    env.user.load_all()
 
-    if auto:
-        return
 
-    equip_app = env.import_app('equip')
-
-    obj = user.hero.equips.get(equip_id)
-
-    if not obj:
-        return notices.EQUIP_NOT_EXISTS
-
-    used_equips = equip_app.get_used_equip(user)
-
-    if equip_id in used_equips:
-        return notices.EQUIP_RESOLVE_IN_TEAM
+@notify_app.checker
+def ratio_equip(env):
+    """改变装备强化成功率
+    """
+    env.user.load_all()
 

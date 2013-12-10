@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import time as te
+import time
 import datetime
 
 MSG = {
@@ -218,7 +218,7 @@ def totime(req, key):
         realtime = 0
     else:
         tmptime = datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
-        realtime = te.mktime(tmptime.timetuple())
+        realtime = time.mktime(tmptime.timetuple())
 
     return realtime
 

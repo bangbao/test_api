@@ -1,8 +1,9 @@
 # coding: utf-8
 
-import constants
 from apps.admin import handle
 from apps.admin.form import Form
+from . import constants
+
 
 TEMPLATE = 'admin/game/gamemain.html'
 
@@ -11,6 +12,7 @@ def index(env):
     """
     data = {'op': 'input', 'field': 'user'}
     return env.render(TEMPLATE, {'data': data})
+
 
 def show(env, uid=None, field=None, msg=None):
     """显示HTML表单
@@ -43,6 +45,7 @@ def show(env, uid=None, field=None, msg=None):
 
     return env.render(TEMPLATE, {'data': data})
 
+
 def save(env):
     """保存game模块user或者info属性的修改
     """
@@ -67,6 +70,7 @@ def save(env):
 
     return show(env, uid=uid, field=field, msg=msg)
 
+
 def reset(env):
     """重置数据
     """
@@ -83,6 +87,7 @@ def reset(env):
 
     return show(env, uid=uid, field=field, msg=handle.MSG['SUCCESS'])
 
+
 def getmodel(uid, env):
     """获取并处理user，加载必要的数据
     """
@@ -96,3 +101,4 @@ def getmodel(uid, env):
 
     return u
     
+

@@ -1,5 +1,6 @@
 # coding: utf-8
 
+
 def to_tableform(config):
     """生成ModelList数据表单页面框架
 
@@ -31,6 +32,7 @@ def to_tableform(config):
 
     return html
 
+
 def form_template(sort, values):
     """
     """
@@ -53,6 +55,7 @@ def form_template(sort, values):
                     u'</form>'))
 
     return u''.join(form_tmp)
+
 
 def value_to_form(label, name):
     """生成ModelDict数据中某一值的HTML

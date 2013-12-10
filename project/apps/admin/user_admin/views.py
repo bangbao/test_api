@@ -1,16 +1,16 @@
 # coding: utf-8
 
-import constants
-from apps.admin import handle
 from lib.db.fields import ModelDict
+from apps.admin import handle
 from apps.user.models import User
+from . import constants
+
 
 TEMPLATE = 'admin/user/usermain.html'
 
 def index(env, msg=None):
     """用户列表
     """
-
     connection = env.storage.connects.get(ModelDict, User)
     cursor = connection.cursor()
 
@@ -21,10 +21,10 @@ def index(env, msg=None):
 
     return env.render(TEMPLATE, {'user_data': user_data, 'msg': msg})
 
+
 def reset(env):
     """重置用户相关的数据
     """
-
     uid = env.req.get_argument('uid', '')
 
     user = getmodel(uid, env)
@@ -32,10 +32,10 @@ def reset(env):
 
     return index(env, msg=handle.MSG['SUCCESS'])
 
+
 def getmodel(uid, env):
     """获取并处理user，加载必要的数据
     """
-
     user_app = env.import_app('user')
     user = user_app.get_user(env, int(uid))
 

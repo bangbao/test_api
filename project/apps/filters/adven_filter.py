@@ -1,25 +1,26 @@
 # coding: utf-8
 
+import itertools
+
 from apps import notify as notify_app
 from apps.notify import constants as notices
 
-import itertools
 
-
+@notify_app.checker
 def world_map(env):
     """世界地图
     """
-
     user_adven = env.user.adven
     user_adven.load_adven()
     user_adven.load_readven()
     user_adven.load_data()
     env.user.load_all()
 
+
+@notify_app.checker
 def area_map(env):
     """区域地图
     """
-
     env.params['area'] = int(env.req.get_argument('area', 1))
 
     user_adven = env.user.adven
@@ -28,6 +29,8 @@ def area_map(env):
     user_adven.load_data()
     env.user.load_all()
 
+
+@notify_app.checker
 def chapter_map(env):
     """章节地图
     """
@@ -40,10 +43,11 @@ def chapter_map(env):
     user_adven.load_data()
     env.user.load_all()
 
+
+@notify_app.checker
 def stage(env):
     """攻关前页面
     """
-
     env.params['area'] = int(env.req.get_argument('area', 1))
     env.params['chapter'] = int(env.req.get_argument('chapter', 1))
     env.params['stage'] = int(env.req.get_argument('stage', 1))
@@ -59,10 +63,11 @@ def stage(env):
     env.params['user_team'] = hero_app.team_get(user)
     env.params['select'] = select
 
+
+@notify_app.checker
 def fight(env):
     """攻关战斗
     """
-
     members = env.req.get_arguments('members')
     area = int(env.req.get_argument('area', 1))
     chapter = int(env.req.get_argument('chapter', 1))
@@ -77,6 +82,11 @@ def fight(env):
     user.adven.load_readven(keys=[chapter])
     user.adven.load_data(keys=[stage])
     env.user.load_all()
+
+    stage_cost = env.game_config['stages'][stage]['cost']
+
+    if user.game.user['energy'] < stage_cost['energy']:
+        return notices.ADVEN_FIGHT_NOT_ENOUGH_ENERGY
 
     member_not_exists = False
 
@@ -95,18 +105,5 @@ def fight(env):
     env.params['stage'] = stage
     env.params['select'] = select
 
-    return check_fight(env, user, area, chapter, stage, select, env.game_config)
 
 
-@notify_app.checker
-def check_fight(env, user, area, chapter, stage, select, game_config):
-    """检查是否可以攻关
-    """
-
-    stage_cost = game_config['stages'][stage]['cost']
-
-    print locals()
-    if user.game.user['energy'] < stage_cost['energy']:
-        print 'energy is not enough'
-
-        return notices.ADVEN_FIGHT_NOT_ENOUGH_ENERGY

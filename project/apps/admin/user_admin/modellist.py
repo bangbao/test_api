@@ -1,5 +1,6 @@
 # coding: utf-8
 
+
 def to_tableform(config):
     """生成ModelList数据表单页面框架
 
@@ -41,6 +42,7 @@ def to_tableform(config):
 
     return html
 
+
 def label_template(sort, values):
     """
     """
@@ -53,6 +55,7 @@ def label_template(sort, values):
     label_tmp.append(u'<th colspan="2">操作</th></tr>')
 
     return u''.join(label_tmp)
+
 
 def form_template(sort, values):
     """
@@ -92,6 +95,7 @@ def one_to_group(name):
     return (u'<td><input class="inp" type="text" name="%s" value="%s" />'
             u'</td>') % (name, value_format)
 
+
 def one_to_group_no(name):
     """生成ModelList中某一项的某一个值的HTML
 
@@ -110,4 +114,5 @@ def one_to_group_no(name):
                 % (value_format, name, value_format)
     else:
         return u'<td>%s</td>' % value_format
+
 

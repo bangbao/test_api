@@ -3,9 +3,11 @@
 import re
 import time
 import datetime
-from apps import config as config_app
+
 from lib.db.fields import ModelDict
 from lib.db.fields import ModelList
+from apps import config as config_app
+
 
 class Form(object):
     """后台表单类
@@ -18,9 +20,7 @@ class Form(object):
         field_obj: Model类的属性对象。
         config: 后台功能的相关配置。
         req: RequestHandler对象
-        
     """
-    
     def __init__(self, env, field, field_obj, config, req=None):
         self.env = env
         self.field = field
@@ -73,7 +73,6 @@ class Form(object):
         Retruns:
             表单数据的字典
         """
-
         data = self.field_obj
         config = self.config[self.field]
         

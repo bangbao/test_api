@@ -2,16 +2,15 @@
 
 from apps.admin.form import Form
 from apps.admin import handle
-
-import constants
+from . import constants
 
 
 def get_form(user, field):
     """
     """
     form = constants.CONFIG[field]
-
     return form.show(user)
+
 
 def userinfo(user, **kwargs):
     """用户基本信息
@@ -32,3 +31,5 @@ def userinfo(user, **kwargs):
     info.update(kwargs)
 
     return info
+
+

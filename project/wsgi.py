@@ -7,10 +7,10 @@ import psutil
 import signal
 import logging
 
-from tornado.httpserver import HTTPServer
-from tornado.options import define, options
 from tornado import ioloop
 from tornado import web
+from tornado.httpserver import HTTPServer
+from tornado.options import define, options
 from lib.core.environ import ShellEnviron
 from apps import settings
 from apps.handers import (APIRequestHandler, 

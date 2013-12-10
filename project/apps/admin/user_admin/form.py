@@ -1,7 +1,7 @@
 # coding: utf-8
 
-import modeldict
-import modellist
+from . import modeldict
+from . import modellist
 
 
 class ModelDictForm(object):

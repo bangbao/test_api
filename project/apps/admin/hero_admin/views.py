@@ -1,8 +1,9 @@
 # coding: utf-8
 
-import constants
 from apps.admin import handle
 from apps.admin.form import Form
+from . import constants
+
 
 TEMPLATE = 'admin/hero/heromain.html'
 
@@ -87,6 +88,7 @@ def show(env, uid=None, field=None, msg=None):
 
     return env.render(TEMPLATE, {'data': data})
 
+
 def save(env):
     """保存hero模块data属性的修改
     """
@@ -110,12 +112,12 @@ def save(env):
 
     return show(env, uid=uid, field=field, msg=msg)
 
+
 def modify(env):
     """修改用户道具
     
     卡牌， 装备， 卡牌材料， 装备材料， 零件
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', '')
 
@@ -160,12 +162,12 @@ def modify(env):
 
     return show(env, uid=uid, field=field, msg=msg)
 
+
 def delete(env):
     """删除用户道具
     
     卡牌， 装备， 卡牌材料， 装备材料， 零件
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', '')
 
@@ -182,12 +184,12 @@ def delete(env):
 
     return show(env, uid=uid, field=field, msg=handle.MSG['SUCCESS'])
 
+
 def add(env):
     """为用户添加道具
     
     卡牌， 装备， 卡牌材料， 装备材料， 零件
     """
-
     uid = env.req.get_argument('uid', '')
     field = env.req.get_argument('field', '')
 
@@ -244,6 +246,7 @@ def add(env):
 
     return show(env, uid=uid, field=field, msg=handle.MSG['SUCCESS'])
 
+
 def reset(env):
     """重置或清空数据
     """
@@ -259,6 +262,7 @@ def reset(env):
     env.storage.save(u.hero)
 
     return show(env, uid=uid, field=field, msg=handle.MSG['SUCCESS'])
+
 
 def getmodel(uid, env):
     """获取并处理user，加载必要的数据

@@ -1,12 +1,13 @@
 # coding: utf-8
 
+import itertools
+
 from apps import notify as notify_app
 from apps.notify import constants as notices
 from apps.public import logics as publics
 
-import itertools
 
-
+@notify_app.checker
 def heros(env):
     """卡牌背包
     """
@@ -15,6 +16,7 @@ def heros(env):
     user.load_all()
 
 
+@notify_app.checker
 def team_arrange(env):
     """阵容编队
     """
@@ -46,6 +48,7 @@ def team_arrange(env):
     env.params['user_team'] = team
 
 
+@notify_app.checker
 def pre_evolution(env):
     """卡牌进阶界面
     """
@@ -60,6 +63,7 @@ def pre_evolution(env):
     return check_evolution(env, hero_id, env.game_config, elements=None)
 
 
+@notify_app.checker
 def evolution(env):
     """卡牌进阶
     """
@@ -70,124 +74,9 @@ def evolution(env):
     user.hero.load_heros()
     user.load_all()
 
-    env.params['hero_id'] = hero_id
-    env.params['elements'] = elements
-
-    return check_evolution(env, hero_id, env.game_config, elements)
-
-
-def pre_merge(env):
-    """卡牌合并前信息
-    """
-    hero_id = env.req.get_argument('hero_id', '')
-
-    user = env.user
-    user.hero.load_heros()
-    user.load_all()
-
-    env.params['hero_id'] = hero_id
-
-
-def merge(env):
-    """卡牌合并
-    """
-    hero_id = env.req.get_argument('hero_id')
-    elements = set(env.req.get_arguments('elements'))
-
-    user = env.user
-    user.hero.load_heros()
-    user.load_all()
-
-    env.params['hero_id'] = hero_id
-    env.params['elements'] = elements
-
-    return check_merge(env, hero_id, env.game_config, elements)
-
-
-def pre_resolve(env):
-    """卡牌分解界面
-    """
-    user = env.user
-    user.hero.load_heros()
-    user.load_all()
-
-
-def resolve(env):
-    """卡牌分解
-    """
-    hero_id = env.req.get_argument('hero_id')
-
-    user = env.user
-    user.hero.load_heros()
-    user.load_all()
-
-    env.params['hero_id'] = hero_id
-
-    return check_resolve(env, hero_id, env.game_config)
-
-
-def sell(env):
-    """卡牌卖出
-    """
-    elements = set(env.req.get_arguments('elements'))
-
-    user = env.user
-    user.hero.load_heros()
-    user.load_all()
-
-    env.params['elements'] = elements
-
-    return check_sell(env, env.game_config, elements)
-
-
-def pre_trans_job(env):
-    """转职页面
-    """
-    user = env.user
-    user.hero.load_heros()
-    user.hero.load_items()
-    user.load_all()
-
-
-def trans_job(env):
-    """转职
-    """
-    hero_id = env.req.get_argument('hero_id')
+    user_game = user.game
+    user_hero = user.hero
     game_config = env.game_config
-
-    user = env.user
-    user.hero.load_heros()
-    user.hero.load_items()
-    user.load_all()
-
-    env.params['hero_id'] = hero_id
-
-    return check_trans_job(env, hero_id, game_config)
-
-
-def buy_items(env):
-    """购买转职材料
-    """
-    item_id = int(env.req.get_argument('item_id', 0))
-    num = int(env.req.get_argument('num', 1))
-
-    user = env.user
-    user.hero.load_heros()
-    user.hero.load_items()
-    user.load_all()
-
-    env.params['item_id'] = item_id
-    env.params['num'] = num
-
-    return check_buy_items(env, item_id, num, env.game_config)
-
-
-@notify_app.checker
-def check_evolution(env, hero_id, game_config, elements=None):
-    """检查卡牌是否可以进阶
-    """
-    user_game = env.user.game
-    user_hero = env.user.hero
 
     hero_app = env.import_app('hero')
     team = hero_app.team_get(env.user)
@@ -233,14 +122,37 @@ def check_evolution(env, hero_id, game_config, elements=None):
     if src_elements:
         return notices.HERO_ELEMENTS_NOT_ENOUGH
 
+    env.params['hero_id'] = hero_id
+    env.params['elements'] = elements
+
 
 @notify_app.checker
-def check_merge(env, hero_id, game_config, elements=None):
-    """检查卡牌是否可以合并
+def pre_merge(env):
+    """卡牌合并前信息
     """
-    user_game = env.user.game
-    user_hero = env.user.hero
+    hero_id = env.req.get_argument('hero_id', '')
 
+    user = env.user
+    user.hero.load_heros()
+    user.load_all()
+
+    env.params['hero_id'] = hero_id
+
+
+@notify_app.checker
+def merge(env):
+    """卡牌合并
+    """
+    hero_id = env.req.get_argument('hero_id')
+    elements = set(env.req.get_arguments('elements'))
+
+    user = env.user
+    user.hero.load_heros()
+    user.load_all()
+
+    user_game = user.game
+    user_hero = user.hero
+    game_config = env.game_config
     hero_app = env.import_app('hero')
     team = hero_app.team_get(env.user)
     hero = user_hero.heros.get(hero_id)
@@ -280,11 +192,30 @@ def check_merge(env, hero_id, game_config, elements=None):
         return notices.GOLD_NOT_ENOUGH
 
 
+    env.params['hero_id'] = hero_id
+    env.params['elements'] = elements
+
+
 @notify_app.checker
-def check_resolve(env, hero_id, game_config):
-    """检查卡牌是否可以分解
+def pre_resolve(env):
+    """卡牌分解界面
     """
-    user_hero = env.user.hero
+    user = env.user
+    user.hero.load_heros()
+    user.load_all()
+
+
+@notify_app.checker
+def resolve(env):
+    """卡牌分解
+    """
+    hero_id = env.req.get_argument('hero_id')
+
+    user = env.user
+    user.hero.load_heros()
+    user.load_all()
+
+    user_hero = user.hero
 
     hero_app = env.import_app('hero')
     team = hero_app.team_get(env.user)
@@ -303,13 +234,21 @@ def check_resolve(env, hero_id, game_config):
     if user_hero.data['resolve'] <= 0:
         return notices.HERO_RESOLVE_NO_FREE_TIMES
 
+    env.params['hero_id'] = hero_id
+
 
 @notify_app.checker
-def check_sell(env, game_config, elements):
-    """检查卡牌卖出
+def sell(env):
+    """卡牌卖出
     """
+    elements = set(env.req.get_arguments('elements'))
+
     user = env.user
+    user.hero.load_heros()
+    user.load_all()
+
     user_hero = user.hero
+    game_config = env.game_config
 
     hero_app = env.import_app('hero')
     team = hero_app.team_get(user)
@@ -328,7 +267,7 @@ def check_sell(env, game_config, elements):
             continue
 
         detail = hero_app.logics.get_hero_detail(obj, game_config)
-
+ 
         if not detail['can_sell']:
             include_not_sell = True
             continue
@@ -345,12 +284,29 @@ def check_sell(env, game_config, elements):
 
 
 @notify_app.checker
-def check_trans_job(env, hero_id, game_config):
-    """检查卡牌是否可以转职
+def pre_trans_job(env):
+    """转职页面
     """
+    user = env.user
+    user.hero.load_heros()
+    user.hero.load_items()
+    user.load_all()
 
-    user_game = env.user.game
-    user_hero = env.user.hero
+
+@notify_app.checker
+def trans_job(env):
+    """转职
+    """
+    hero_id = env.req.get_argument('hero_id')
+    game_config = env.game_config
+
+    user = env.user
+    user.hero.load_heros()
+    user.hero.load_items()
+    user.load_all()
+
+    user_game = user.game
+    user_hero = user.hero
 
     obj = user_hero.heros.get(hero_id)
 
@@ -373,10 +329,23 @@ def check_trans_job(env, hero_id, game_config):
     if user_game.user['gold'] < config['cost']['gold']:
         return notices.GOLD_NOT_ENOUGH
 
+    env.params['hero_id'] = hero_id
+
 
 @notify_app.checker
-def check_buy_items(env, item_id, num, game_config):
-    """检查购买转职材料
+def buy_items(env):
+    """购买转职材料
     """
-    pass
+    item_id = int(env.req.get_argument('item_id', 0))
+    num = int(env.req.get_argument('num', 1))
+
+    user = env.user
+    user.hero.load_heros()
+    user.hero.load_items()
+    user.load_all()
+
+    # TODO check kcoin
+    env.params['item_id'] = item_id
+    env.params['num'] = num
+
 

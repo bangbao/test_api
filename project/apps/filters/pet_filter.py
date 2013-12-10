@@ -4,29 +4,33 @@ from apps import notify as notify_app
 from apps.notify import constants as notices
 
 
+@notify_app.checker
 def pets(env):
     """宠物界面
     """
-
     user = env.user
     user.hero.load_pets()
     user.hero.load_items()
     user.load_all()
 
+
+@notify_app.checker
 def played(env):
     """更换出战宠物
     """
-
     pet_id = env.req.get_argument('pet_id')
 
     user = env.user
     user.hero.load_pets(keys=[pet_id])
     user.load_all()
 
+    if not pet_id in user.hero.pets:
+        return notices.KCOIN_NOT_ENOUGH
+
     env.params['pet_id'] = pet_id
 
-    return check_played(env, pet_id)
 
+@notify_app.checker
 def feed(env):
     """喂养宠物
     """
@@ -38,53 +42,7 @@ def feed(env):
     user.hero.load_items()
     user.load_all()
 
-    env.params['pet_id'] = pet_id
-    env.params['item_id'] = item_id
-
-    return check_feed(env, pet_id, item_id, env.game_config)
-
-def refresh_skill(env):
-    """刷新技能
-    """
-    pet_id = env.req.get_argument('pet_id')
-    pos = int(env.req.get_argument('pos'))
-
-    user = env.user
-    user.hero.load_pets(keys=[pet_id])
-    user.load_all()
-
-    env.params['pet_id'] = pet_id
-    env.params['pos'] = pos
-
-def remove_skill(env):
-    """删除一个技能
-    """
-    pet_id = env.req.get_argument('pet_id')
-    pos = int(env.req.get_argument('pos'))
-
-    user = env.user
-    user.hero.load_pets(keys=[pet_id])
-    user.load_all()
-
-    env.params['pet_id'] = pet_id
-    env.params['pos'] = pos
-
-
-@notify_app.checker
-def check_played(env, pet_id):
-    """检查是否可以更换宠物出战
-    """
-
-    user = env.user
-
-    if not pet_id in user.hero.pets:
-        return notices.KCOIN_NOT_ENOUGH
-
-@notify_app.checker
-def check_feed(env, pet_id, item_id, game_config):
-    """检查是否可以喂养宠物
-    """
-
+    game_config = env.game_config
     user_hero = env.user.hero
     pet_app = env.import_app('pet')
     pet_obj = user_hero.pets.get(pet_id)
@@ -102,4 +60,36 @@ def check_feed(env, pet_id, item_id, game_config):
     if not item_obj or item_obj['num'] < 1:
         return notices.KCOIN_NOT_ENOUGH
 
+    env.params['pet_id'] = pet_id
+    env.params['item_id'] = item_id
+
+
+@notify_app.checker
+def refresh_skill(env):
+    """刷新技能
+    """
+    pet_id = env.req.get_argument('pet_id')
+    pos = int(env.req.get_argument('pos'))
+
+    user = env.user
+    user.hero.load_pets(keys=[pet_id])
+    user.load_all()
+
+    env.params['pet_id'] = pet_id
+    env.params['pos'] = pos
+
+
+@notify_app.checker
+def remove_skill(env):
+    """删除一个技能
+    """
+    pet_id = env.req.get_argument('pet_id')
+    pos = int(env.req.get_argument('pos'))
+
+    user = env.user
+    user.hero.load_pets(keys=[pet_id])
+    user.load_all()
+
+    env.params['pet_id'] = pet_id
+    env.params['pos'] = pos
 

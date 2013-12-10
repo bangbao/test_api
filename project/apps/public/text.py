@@ -47,7 +47,7 @@ class PoFilter(object):
                              for chunk, offsets in offsets.iteritems()))
         offsets = None
 
-    def replace(self, text, to):
+    def replace(self, text, to='**'):
         """ 查找敏感词，并进行替换
 
         Args:
