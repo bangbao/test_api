@@ -30,10 +30,10 @@ shell()
 
 start()
 {
-    python -O ${P_DIR}/wsgi.py --port=58500 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
-    python -O ${P_DIR}/wsgi.py --port=58501 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
-    python -O ${P_DIR}/wsgi.py --port=58502 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
-    python -O ${P_DIR}/wsgi.py --port=58503 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
+    python -OO ${P_DIR}/wsgi.py --port=58500 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
+    python -OO ${P_DIR}/wsgi.py --port=58501 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
+    python -OO ${P_DIR}/wsgi.py --port=58502 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
+    python -OO ${P_DIR}/wsgi.py --port=58503 --log_file_prefix=${P_DIR}/logs/mdota-58500.log & echo 'start success'
     #supervisorctl -c supervisor.conf restart mdota:*
 }
 
