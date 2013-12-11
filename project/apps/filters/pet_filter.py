@@ -43,9 +43,8 @@ def feed(env):
     user.load_all()
 
     game_config = env.game_config
-    user_hero = env.user.hero
     pet_app = env.import_app('pet')
-    pet_obj = user_hero.pets.get(pet_id)
+    pet_obj = user.hero.pets.get(pet_id)
 
     if not pet_obj:
         return notices.KCOIN_NOT_ENOUGH
@@ -55,7 +54,7 @@ def feed(env):
     if pet_obj['full'] >= detail['full']:
         return notices.KCOIN_NOT_ENOUGH
 
-    item_obj = user_hero.items.get(item_id)
+    item_obj = user.hero.items.get(item_id)
 
     if not item_obj or item_obj['num'] < 1:
         return notices.KCOIN_NOT_ENOUGH
@@ -92,4 +91,5 @@ def remove_skill(env):
 
     env.params['pet_id'] = pet_id
     env.params['pos'] = pos
+
 

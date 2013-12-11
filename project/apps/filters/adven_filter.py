@@ -48,9 +48,9 @@ def chapter_map(env):
 def stage(env):
     """攻关前页面
     """
-    env.params['area'] = int(env.req.get_argument('area', 1))
-    env.params['chapter'] = int(env.req.get_argument('chapter', 1))
-    env.params['stage'] = int(env.req.get_argument('stage', 1))
+    area = int(env.req.get_argument('area', 1))
+    chapter = int(env.req.get_argument('chapter', 1))
+    stage = int(env.req.get_argument('stage', 1))
     select = env.req.get_argument('select', 'light')
 
     user = env.user
@@ -61,6 +61,9 @@ def stage(env):
 
     hero_app = env.import_app('hero')
     env.params['user_team'] = hero_app.team_get(user)
+    env.params['area'] = area
+    env.params['chapter'] = chapter
+    env.params['stage'] = stage
     env.params['select'] = select
 
 

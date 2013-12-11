@@ -44,9 +44,8 @@ def forge(env):
     """
     mode = int(env.req.get_argument('mode'))
 
-    env.user.load_all()
-
     user = env.user
+    user.load_all()
 
     goblin_app = env.import_app('goblin')
     constants = goblin_app.constants

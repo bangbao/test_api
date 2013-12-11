@@ -25,10 +25,10 @@ def create(env):
     user.guild.load_info()
     user.load_all()
 
-    if user.user['kcoin'] < constants.CREATE_GUILD_COST_KCOIN:
+    if user.game.user['kcoin'] < constants.CREATE_GUILD_COST_KCOIN:
         return notices.KCOIN_NOT_ENOUGH
 
-    if user.user['gold'] < constants.CREATE_GUILD_COST_GOLD:
+    if user.game.user['gold'] < constants.CREATE_GUILD_COST_GOLD:
         return notices.GOLD_NOT_ENOUGH
 
     if user.game.info['guild']:
@@ -43,17 +43,16 @@ def create(env):
 def request(env):
     """
     """
-    user = env.user
     guild_id = env.req.get_argument('guild_id')
     msg = env.req.get_argument('msg')
 
-    guild_app = env.import_app('guild')
-
+    user = env.user
     user.load_all()
 
     if user.game.info['guild']:
         return notices.GUILD_JOINED_EXISTS
 
+    guild_app = env.import_app('guild')
     guild = guild_app.get_guild(guild_id)
     guild.load_info()
     guild.load(env)
@@ -74,12 +73,12 @@ def request(env):
 def apply(env):
     """
     """
-    user = env.user
     guild_id = env.req.get_argument('guild_id')
     member_id = env.req.get_argument('member_id')
     guild_app = env.import_app('guild')
     user_app = env.import_app('user')
 
+    user = env.user
     user.guild.load_info()
     user.guild.load_members(keys=[user.pk])
     user.guild.load_apply4(keys=[member_id])
@@ -119,7 +118,6 @@ def reject(env):
     """
     member_id = env.req.get_argument('member_id')
     guild_app = env.import_app('guild')
-    user_app = env.import_app('user')
 
     user = env.user
     user.guild.load_members(keys=[user.pk])

@@ -135,7 +135,6 @@ def buy_battle_times(env):
 def clear_battle_delta(env):
     """清空竞技场cd时间
     """
-
     user = env.user
     user.load_all()
 

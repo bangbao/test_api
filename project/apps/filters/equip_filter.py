@@ -2,7 +2,6 @@
 
 from apps import notify as notify_app
 from apps.notify import constants as notices
-from apps.public import logics as publics
 
 
 @notify_app.checker
@@ -14,7 +13,7 @@ def team_equip(env):
     user.game.load(env)
 
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
 
     user.hero.load_equips()
     user.hero.load_heros(keys=team)
@@ -30,19 +29,19 @@ def load_equip(env):
     user.game.load(env)
 
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
 
     user_hero = user.hero
     user_hero.load_equips()
     user_hero.load_heros(keys=team)
     user.load_all()
 
-    equips_set = set(env.user.hero.equips)
+    equips_set = set(user_hero.equips)
     equip_app = env.import_app('equip')
 
     data = {}
     for pos in equip_app.constants.EQUIP_TEAM_POS_KEYS:
-        pos_set = set(env.req.get_arguments(pos))
+        pos_set = set(x for x in env.req.get_arguments(pos) if x)
 
         if not pos_set.issubset(equips_set):
             return notices.EQUIP_NOT_EXISTS
@@ -61,7 +60,7 @@ def pre_strengthen_equip(env):
     user.game.load(env)
 
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
 
     user_hero = user.hero
     user_hero.load_equips()
@@ -75,22 +74,20 @@ def strengthen_equip(env):
     """
     equip_id = env.req.get_argument('equip_id')
 
+    game_config = env.game_config
     user = env.user
-    user.game.load_equip()
-    user.game.load(env)
+    user_game = user.game
+    user_game.load_equip()
+    user_game.load(env)
 
+    equip_app = env.import_app('equip')
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
 
     user_hero = user.hero
     user_hero.load_equips()
     user_hero.load_heros(keys=team)
     user.load_all()
-
-    game_config = env.game_config
-    user_game = env.user.game
-    user_hero = env.user.hero
-    equip_app = env.import_app('equip')
 
     obj = user_hero.equips.get(equip_id)
 
@@ -190,8 +187,9 @@ def merge_equip(env):
     cfg_id = int(env.req.get_argument('cfg_id'))
 
     user = env.user
-    user.game.load_equip()
-    user.game.load(env)
+    user_game = user.game
+    user_game.load_equip()
+    user_game.load(env)
 
     hero_app = env.import_app('hero')
     team = hero_app.team_get(env.user)
@@ -201,11 +199,9 @@ def merge_equip(env):
     user_hero.load_heros(keys=team)
     user.load_all()
 
-    game_config = env.game_config
-    user_game = env.user.game
     equip_app = env.import_app('equip')
 
-    quality = game_config['equip_quality'].get(cfg_id)
+    quality = env.game_config['equip_quality'].get(cfg_id)
 
     if not quality:
         return notices.EQUIP_NOT_EXISTS
@@ -241,7 +237,6 @@ def sell_equip(env):
     user.load_all()
 
     can_sells = []
-    user_hero = env.user.hero
     equip_app = env.import_app('equip')
     used_equips = equip_app.get_used_equip(env.user)
 

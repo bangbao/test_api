@@ -60,8 +60,6 @@ def pre_evolution(env):
 
     env.params['hero_id'] = hero_id
 
-    return check_evolution(env, hero_id, env.game_config, elements=None)
-
 
 @notify_app.checker
 def evolution(env):
@@ -79,7 +77,7 @@ def evolution(env):
     game_config = env.game_config
 
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
     hero = user_hero.heros.get(hero_id)
 
     if not hero:
@@ -96,9 +94,6 @@ def evolution(env):
 
     if user_game.user['gold'] < config['cost']['gold']:
         return notices.GOLD_NOT_ENOUGH
-
-    if elements is None:
-        return
 
     src_elements = list(config['src'])
 
@@ -165,9 +160,6 @@ def merge(env):
     if hero['level'] >= detail['max_level']:
         return notices.HERO_IS_MAX_LEVEL
 
-    if elements is None:
-        return
-
     if hero_id in elements:
         return notices.HERO_CAN_NOT_EATEN_SELL
 
@@ -215,15 +207,14 @@ def resolve(env):
     user.hero.load_heros()
     user.load_all()
 
-    user_hero = user.hero
 
     hero_app = env.import_app('hero')
-    team = hero_app.team_get(env.user)
+    team = hero_app.team_get(user)
 
     if hero_id in team:
         return notices.HERO_RESOLVE_IN_TEAM
 
-    hero = user_hero.heros.get(hero_id)
+    hero = user.hero.heros.get(hero_id)
 
     if not hero:
         return notices.HERO_NOT_EXISTS
@@ -231,7 +222,7 @@ def resolve(env):
     if hero['lock']:
         return notices.HERO_RESOLVE_IS_LOCKING
 
-    if user_hero.data['resolve'] <= 0:
+    if user.hero.data['resolve'] <= 0:
         return notices.HERO_RESOLVE_NO_FREE_TIMES
 
     env.params['hero_id'] = hero_id
