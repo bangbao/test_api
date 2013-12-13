@@ -211,6 +211,7 @@ def master_up(user, master):
 
     return masters
 
+
 def masters_get(user):
     """获取工匠数据
 
@@ -305,12 +306,12 @@ def add_goblin(user, goblin, where=0, ext=0):
         where: 来源
         ext: 扩展标识
     """
-    obj_id = '%s_%d_%d_%s_%d_%s' % (user.pk,
-                                    int(time.time()),
-                                    goblin['cfg_id'],
-                                    salt_generator(),
-                                    where,
-                                    ext)
+    obj_id = '%s_%d%s_%d_%d%d' % (user.pk,
+                                  int(time.time()),
+                                  goblin['cfg_id'],
+                                  salt_generator(),
+                                  where,
+                                  ext)
     user.hero.goblins.add(obj_id, **goblin)
 
     return {

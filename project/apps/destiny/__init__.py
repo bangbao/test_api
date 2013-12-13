@@ -1,9 +1,9 @@
 # coding: utf-8
 
+import itertools
+
 from . import destinys
 from . import constants
-
-import itertools
 
 
 def add_destiny_effect(user, formation):
@@ -22,6 +22,7 @@ def add_destiny_effect(user, formation):
         detail = hero_logics.get_hero_detail(obj, game_config)
         hero_logics.subjoin_destiny_info(obj, detail, game_config,
                                          cmp_sort=cmp_sort)
+
 
 def apply_destiny_effect(user, formation):
     """卡牌编队应用命运效果
@@ -71,9 +72,9 @@ def cmp_destiny_sort(user, formation):
     used_goblin = goblin_app.get_used_goblin(user)
 
     hero_type_set = set()
+    party_type_set = set()
     equip_type_set = set()
     goblin_type_set = set()
-    party_type_set = set()
 
     for obj in itertools.ifilter(None, formation):
         detail = hero_logics.get_hero_detail(obj, game_config)
@@ -123,4 +124,5 @@ def effect_apply(obj, detail, game_config):
     effect_func = getattr(destinys, effect_func_key)
 
     effect_func(obj, detail, game_config)
+
 

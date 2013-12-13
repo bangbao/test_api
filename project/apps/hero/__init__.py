@@ -183,13 +183,12 @@ def add_hero(user, hero, where=0, ext=0):
         where: 卡牌来源
         ext: 卡牌扩展标识
     """
-    hero_id = '%s_%d_%d_%s_%d_%s' % (user.pk,
-                                     int(time.time()),
-                                     hero['cfg_id'],
-                                     salt_generator(),
-                                     where,
-                                     ext)
-
+    hero_id = '%s_%d%s_%d_%d%d' % (user.pk,
+                                   int(time.time()),
+                                   salt_generator(),
+                                   hero['cfg_id'],
+                                   where,
+                                   ext)
     user.hero.heros.add(hero_id, **hero)
 
     return {

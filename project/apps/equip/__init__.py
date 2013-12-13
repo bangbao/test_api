@@ -238,12 +238,12 @@ def add_equip(user, equip, where=0, ext=0):
     Returns:
         装备数据
     """
-    obj_id = '%s_%d_%d_%s_%d_%s' % (user.pk,
-                                     int(time.time()),
-                                     equip['cfg_id'],
-                                     salt_generator(),
-                                     where,
-                                     ext)
+    obj_id = '%s_%d%s_%d_%d%s' % (user.pk,
+                                  int(time.time()),
+                                  salt_generator(),
+                                  equip['cfg_id'],
+                                  where,
+                                  ext)
     user.hero.equips.add(obj_id, **equip)
 
     return {

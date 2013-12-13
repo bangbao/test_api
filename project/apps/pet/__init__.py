@@ -78,12 +78,12 @@ def add_pet(user, pet, where=0, ext=0):
         where: 来源
         ext: 扩展标识
     """
-    pet_id = '%s_%d_%d_%s_%d_%s' % (user.pk,
-                                    int(time.time()),
-                                    pet['cfg_id'],
-                                    salt_generator(),
-                                    where,
-                                    ext)
+    pet_id = '%s_%d%s_%d_%d%d' % (user.pk,
+                                  int(time.time()),
+                                  salt_generator(),
+                                  pet['cfg_id'],
+                                  where,
+                                  ext)
     user.hero.pets.add(pet_id, **pet)
 
     return {
