@@ -1,10 +1,10 @@
 # coding: utf-8
 
-from lib.utils import sys_random as random
-from . import constants
-
 import time
 import bisect
+
+from lib.utils import sys_random as random
+from . import constants
 
 
 def nearby_rank(rank):
@@ -97,3 +97,5 @@ def calc_battle_delta(battle_at):
         battle_delta = max(delta_time, battle_delta)
 
     return battle_delta
+
+

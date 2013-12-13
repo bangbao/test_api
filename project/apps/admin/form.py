@@ -79,18 +79,17 @@ class Form(object):
         changed = False
         value_dict = {}
         for val in config['values']:
-            
             value = config['values'][val][1](self.req, val)
             value_dict[val] = value
-            
+
             if not changed and value != data[val]:
                 changed = True
-                
+
         value_dict['form_changed'] = changed
-            
+
         return value_dict
-        
-        
+
+
     def mlistdata(self):
         """整理ModelList数据
         
@@ -116,7 +115,7 @@ class Form(object):
             if value != data[key]:
                 changed = True
                 break
-        
+
         return pk, mdata, changed
-    
-        
+
+

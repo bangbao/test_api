@@ -271,7 +271,6 @@ def add_pet(user):
 def cron_strengthen_ratio(env):
     """
     """
-
     import random
     now = int(time.time())
     base_ratio, up, up_time = game_config['strengthen_ratio'] 

@@ -1,16 +1,16 @@
 # coding: utf-8
 
-from lib.utils import rand_weight
-from lib.db.expressions import Incr
-from apps.public import logics as publics
-from apps import config as config_app
-from . import logics
-from . import constants
-from .models import Arena
-
 import time
 import datetime
 import itertools
+
+from lib.utils import rand_weight
+from lib.db.expressions import Incr
+from apps import config as config_app
+from apps.public import logics as publics
+from . import logics
+from . import constants
+from .models import Arena
 
 
 def give_award(user, award):
@@ -90,6 +90,7 @@ def has_rank_award(user):
         return False
 
     return logics.get_award_detail(award_arena.rank, game_config)
+
 
 def get_per_award(user):
     """查看时间奖励
@@ -202,6 +203,7 @@ def get_free_refresh(user):
     """
     return constants.DEFAULT_REFRESH_TIMES
 
+
 def refresh_rival(user, refresh):
     """刷新对手们
 
@@ -214,7 +216,6 @@ def refresh_rival(user, refresh):
     """
     uids = rivals_get(user)
 
-    # if not refresh and len(uids) >= constants.DEFAULT_RIVAL_LENGTH:
     if not refresh and uids:
         return uids
 
@@ -563,4 +564,5 @@ def set_arena_start_time(env, date=None):
     config_app.set_config(env, constants.ARENA_START_TIME_NAME, start_time)
 
     return start_time
+
 

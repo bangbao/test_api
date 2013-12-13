@@ -339,8 +339,6 @@ class ModelList(dict, ModelItemMixIn):
         """
         """
         for row in stmt:
-            #row.pop('updated_at', None)
-            #row.pop('created_at', None)
             pk = row.pop(self.pk_name)
             self.__setitem__(pk, row)
 

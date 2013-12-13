@@ -224,3 +224,4 @@ def random_value(value, attr_mul=1):
 
     return int(random.randint(*value) * attr_mul)
 
+

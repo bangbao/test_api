@@ -1,8 +1,7 @@
 # coding: utf-8
 
-import hashlib
 import uuid
-import logging
+import hashlib
 import weakref
 
 from lib.db import Carrier

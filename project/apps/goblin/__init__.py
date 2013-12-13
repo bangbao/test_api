@@ -1,17 +1,17 @@
 # coding: utf-8
 
+import time
+import bisect
+import datetime
+import itertools
+
 from lib.utils import get_it
 from lib.utils import sys_random as random
 from lib.db.expressions import Incr
 from apps.public import logics as publics
 from apps.public.generator import salt_generator
-from . import constants
 from . import logics
-
-import bisect
-import time
-import datetime
-import itertools
+from . import constants
 
 
 def forge_goods(user, cost_effect):
@@ -495,4 +495,5 @@ def apply_goblin_effect(user, formation):
                            for goblin_id in pos_goblin
                                if goblin_id in goblins)
             logics.apply_goblin_effect(obj, pos_goblins)
+
 

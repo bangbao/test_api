@@ -8,16 +8,13 @@ def item_info(user, goods_id):
         user: 用户
         goods_id: 材料ID
     """
-    env = user.env
-    goods_config = env.game_config['item'][goods_id]
+    goods_config = user.env.game_config['item'][goods_id]
 
-    goods = {
+    return {
         'id': goods_id,
         'name': goods_config['name'],
         'icon': goods_config['icon']
     }
-
-    return goods
 
 
 def material_info(user, goods_id):
@@ -27,17 +24,14 @@ def material_info(user, goods_id):
         user: 用户
         goods_id: 材料ID
     """
-    env = user.env
-    goods_config = env.game_config['equip_material'][goods_id]
+    goods_config = user.env.game_config['equip_material'][goods_id]
 
-    goods = {
+    return {
         'id': goods_id,
         'name': goods_config['name'],
         'star': goods_config['star'],
         'icon': goods_config['icon']
     }
-
-    return goods
 
 
 def goblin_info(user, goods_id):
@@ -94,7 +88,7 @@ def stage_info(user, goods_id):
     env = user.env
     stage_config = env.game_config['stages'][goods_id]
 
-    stage = {
+    return {
         'id': goods_id,
         'name': stage_config['name'],
         'chapter': stage_config['chapter'],
@@ -102,8 +96,6 @@ def stage_info(user, goods_id):
         'cost': stage_config['cost'],
         'difficult': stage_config['difficult'],
     }
-
-    return stage
 
 
 def hero_info(user, goods_id):
@@ -143,10 +135,9 @@ def player_info(user, goods_id):
     player.game.load_user()
     player.game.load(env)
 
-    info = {
+    return {
         'username': player.game.info['username'],
         'level': player.game.user['level'],
     }
 
-    return info
 

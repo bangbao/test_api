@@ -600,3 +600,4 @@ def equip_check(user):
 
     return need_save
 
+

@@ -1,11 +1,11 @@
 # coding: utf-8
 
-from collections import defaultdict
-
 import time
 import hashlib
-import constants
 import itertools
+from collections import defaultdict
+
+from . import constants
 
 
 def calc_delta_second(at, cd):
@@ -52,7 +52,7 @@ def equip_birth(cfg_id, game_config, **kwargs):
     for i in xrange(1, level):
         obj = equip_upgrade(obj, game_config)
 
-    obj.update(**kwargs)
+    obj.update(kwargs)
 
     return obj
 
@@ -252,4 +252,5 @@ def filter_merge_equip(game_config):
         new_equip_merge[detail['destiny_type']].append(cfg_id)
 
     return new_equips, new_equip_merge
+
 

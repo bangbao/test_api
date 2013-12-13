@@ -1,8 +1,10 @@
 # coding: utf-8
-from metaclass import DynamicModel
-from fields import ModelDict
-from fields import ModelList
-from expressions import Incr
+
+from .expressions import Incr
+from .fields import ModelDict
+from .fields import ModelList
+from .metaclass import DynamicModel
+
 
 class Carrier(object):
     CACHE_ENABLE = True
@@ -17,13 +19,11 @@ class Carrier(object):
     def init(self):
         """
         """
-
         raise NotImplementedError
 
     def load(self, env):
         """
         """
-
         for name in self._loads.keys():
             obj = getattr(self, name)
             kwargs = self._loads.pop(name)
@@ -39,7 +39,6 @@ if __name__ == "__main__":
 
         NAME = 'game'
         DATABASE = 'clusters'
-
         FIELDS = ['data']
 
         def init(self):

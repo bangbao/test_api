@@ -1,9 +1,9 @@
 # coding: utf-8
 
-from . import constants
-
+import json
 import itertools
-import ujson
+
+from . import constants
 
 
 def format_message(user, message):
@@ -113,7 +113,7 @@ def format_goods(user, goods_type, goods_id):
     """
     func_info = constants.GOODS_INFO_MAPPING[goods_type]
     goods_info = func_info(user, goods_id)
-    goods_data = ujson.dumps(goods_info)
+    goods_data = json.dumps(goods_info)
 
     star = goods_info.get('star', 0)
     star_color = constants.GOODS_STAR_COLOR_MAP[star]
@@ -124,4 +124,5 @@ def format_goods(user, goods_type, goods_id):
     goods_text = goods_tempate % goods_info
 
     return goods_text
+
 

@@ -8,7 +8,6 @@ from apps.public import logics as publics
 from . import constants
 
 
-
 def pet_birth(cfg_id, game_config, **kwargs):
     """由宠物配置ID生成一个能用的宠物对象
 
@@ -20,8 +19,8 @@ def pet_birth(cfg_id, game_config, **kwargs):
     Returns:
         宠物对象
     """
-    obj = dict(cfg_id=cfg_id, level=1, exp=0, level_up=0, 
-               full=0, clone=1, skill='')
+    obj = {'cfg_id': cfg_id, 'level': 1, 'exp': 0, 'level_up': 0,
+           'full': 0, 'clone': 1, 'skill': ''}
 
     level = kwargs.pop('level', 1)
     obj = pet_upgrade(obj, game_config)

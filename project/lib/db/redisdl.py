@@ -1,13 +1,8 @@
-#!/usr/bin/env python
+# coding: utf-8
 
-try:
-    import ujson as json
-except ImportError:
-    try:
-        import json
-    except ImportError:
-        import simplejson as json
+import json
 import redis
+
 
 def dumps(host='localhost', port=6379, password=None, db=0, pretty=False):
     r = redis.Redis(host=host, port=port, password=password, db=db)
@@ -22,6 +17,7 @@ def dumps(host='localhost', port=6379, password=None, db=0, pretty=False):
     for key, type, value in _reader(r, pretty):
         table[key] = {'type': type, 'value': value}
     return encoder.encode(table)
+
 
 def dump(fp, host='localhost', port=6379, password=None, db=0, pretty=False):
     if pretty:
@@ -50,6 +46,7 @@ def dump(fp, host='localhost', port=6379, password=None, db=0, pretty=False):
             fp.write(',')
         fp.write(item)
     fp.write('}')
+
 
 def _reader(r, pretty):
     for key in r.keys():

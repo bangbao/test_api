@@ -14,6 +14,7 @@ class RedisItemMixIn(ModelItemMixIn):
 
         return self.use_db
 
+
 class RedisString(RedisItemMixIn):
     """ 对Redis String类型操作的封装
 
@@ -26,7 +27,6 @@ class RedisString(RedisItemMixIn):
        value: 当前数值
        to_pyfunc: 将Redis里的数值通过某中方式转成Python对象
     """
-
     def __init__(self, db_name, to_pyfunc=str):
         self.env = None
         self.use_db = db_name
@@ -44,7 +44,6 @@ class RedisString(RedisItemMixIn):
             attr_name: 名称
             carrier: 载体Model
         """
-
         self.key = env.generate_store_key(carrier, attr_name)
         self.env = env
         connect = env.storage.connects.get(self)
@@ -59,7 +58,6 @@ class RedisString(RedisItemMixIn):
         Returns:
            是否设置成功
         """
-
         connect = self.env.storage.connects.get(self)
         seted = connect.set(self.key, value)
 
@@ -77,7 +75,6 @@ class RedisString(RedisItemMixIn):
         Returns:
             增量修改后的数值
         """
-
         connect = self.env.storage.connects.get(self)
         return self.to_pyfunc(connect.incrby(self.key, value))
 
@@ -90,7 +87,6 @@ class RedisString(RedisItemMixIn):
         Returns:
             是否设置成功
         """
-        
         connect = self.env.storage.connects.get(self)
         seted = connect.setnx(value)
 
@@ -109,7 +105,6 @@ class RedisHash(dict, RedisItemMixIn):
        use_db: 使用settings所对应的db
        shared_key: 散列数值
     """
-
     def __init__(self, db_name):
         """ 初始化
         
@@ -118,7 +113,6 @@ class RedisHash(dict, RedisItemMixIn):
         Args:
            db_name: 对应settings里的db配置
         """
-
         self.env = None
         self.use_db = db_name
         self.shared_key = None
@@ -133,7 +127,6 @@ class RedisHash(dict, RedisItemMixIn):
             attr_name: 名称
             carrier: 载体Model
         """
-
         self.key = env.generate_store_key(carrier, attr_name)
         self.env = env
 
@@ -143,7 +136,6 @@ class RedisHash(dict, RedisItemMixIn):
         Returns:
             数据在Redis的长度
         """
-
         connect = self.env.storage.connects.get(self)
         return connect.hlen(self.key)
 
@@ -152,7 +144,6 @@ class RedisHash(dict, RedisItemMixIn):
         
         一次性加载全部Redis的数据
         """
-
         connect = self.env.storage.connects.get(self)
         self.update(connect.hgetall(self.key))
 
@@ -163,7 +154,6 @@ class RedisHash(dict, RedisItemMixIn):
            key: Hash里的一个key
            value: 增量数值
         """
-
         connect = self.env.storage.connects.get(self)
         self.__setitem___(key,  self.to_pyfunc(
             connect.hincrbyfloat(self.key, key, value)))
@@ -174,7 +164,6 @@ class RedisHash(dict, RedisItemMixIn):
         Args:
             keys: 要加载的key列表
         """
-
         connect = self.env.storage.connects.get(self)
         self.update(connect.hmget(self.key, keys))
 
@@ -184,7 +173,6 @@ class RedisHash(dict, RedisItemMixIn):
         Args:
            kwargs: 要设置的字典
         """
-
         connect = self.env.storage.connects.get(self)
 
         if connect.hmset(self.key, kwargs):
@@ -197,7 +185,6 @@ class RedisHash(dict, RedisItemMixIn):
            key: Hash里对应的一个key
            value: 要设置的数值
         """
-
         connect = self.env.storage.connects.get(self)
         connect.hset(self.key, key, value)
         self.__setitem___(key, value)
@@ -212,7 +199,6 @@ class RedisHash(dict, RedisItemMixIn):
         Returns:
            是否设置成功
         """
-
         connect = self.env.storage.connects.get(self)
 
         if connect.hsetnx(self.key, key, value):
@@ -232,7 +218,6 @@ class RedisHash(dict, RedisItemMixIn):
         Returns:
            是否保存成功
         """
-
         kwargs = None
 
         if keys:
@@ -245,6 +230,7 @@ class RedisHash(dict, RedisItemMixIn):
         connect = self.env.storage.connects.get(self)
 
         return connect.hmset(self.key, kwargs)
+
 
 class RedisSortedSetHM(RedisItemMixIn):
     def __init__(self, db_name):
@@ -273,10 +259,10 @@ class RedisSortedSetHM(RedisItemMixIn):
     def evalsha(self, script_sha, argc, *args):
         """
         """
-
         connect = self.env.storage.connects.get(self)
 
         return connect.evalsha(script_sha, argc, *args)
+
 
 class RedisSortedSet(RedisItemMixIn):
     def __init__(self, db_name):
@@ -299,7 +285,6 @@ class RedisSortedSet(RedisItemMixIn):
            attr_name: 所处于model的名字
            carrier: model对象
         """
-
         self.pk = carrier.pk
         self.key = env.generate_store_key(carrier, attr_name)
         self.env = env
@@ -317,7 +302,6 @@ class RedisSortedSet(RedisItemMixIn):
     def reset(self):
         """
         """
-
         connect = self.env.storage.connects.get(self)
         connect.zrem(self.key, self.pk)
 
@@ -327,7 +311,6 @@ class RedisSortedSet(RedisItemMixIn):
         Returns:
             总人数
         """
-
         connect = self.env.storage.connects.get(self)
 
         return connect.zcard(self.key)
@@ -338,7 +321,6 @@ class RedisSortedSet(RedisItemMixIn):
         Args:
            要快照的key
         """
-
         connect = self.env.storage.connects.get(self)
         connect.zunionstore(snapshot_key, {self.key: 1}, aggregate=None)
 
@@ -348,7 +330,6 @@ class RedisSortedSet(RedisItemMixIn):
         Args: 
            value: 增量数值
         """
-
         connect = self.env.storage.connects.get(self)
         pipe = connect.pipeline(transaction=False)
         pipe.zincrby(self.key, self.pk, value)
@@ -365,7 +346,6 @@ class RedisSortedSet(RedisItemMixIn):
         Args:
            value: 积分数值
         """
-
         connect = self.env.storage.connects.get(self)
         pipe = connect.pipeline(transaction=False)
         pipe.zadd(self.key, self.pk, value)
@@ -388,7 +368,6 @@ class RedisSortedSet(RedisItemMixIn):
         Returns:
             符合条件的列表
         """
-
         connect = self.env.storage.connects.get(self)
 
         return connect.zrevrange(self.key, min_rank - 1, max_rank - 1, with_score)
@@ -406,8 +385,6 @@ class RedisSortedSet(RedisItemMixIn):
         Returns:
             以排名为key的字典
         """
-
-        outs = {}
         all_ranks = []
 
         prev = ranks.pop(0)
@@ -451,7 +428,6 @@ class RedisSortedSet(RedisItemMixIn):
         Returns:
            符合条件的id列表
         """
-
         min_rank = self.rank - ahead
         max_rank = self.rank + behind
 
@@ -471,7 +447,6 @@ class RedisSortedSet(RedisItemMixIn):
         Returns:
            符合条件的id列表
         """
-
         min_score = self.score - ahead
         max_score = self.score + behind
 
@@ -479,3 +454,5 @@ class RedisSortedSet(RedisItemMixIn):
 
         return connect.zrevrangebyscore(self.key, max_score, min_score,
                                         num=num, withscores=with_score)
+
+

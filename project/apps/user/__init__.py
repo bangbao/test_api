@@ -54,8 +54,6 @@ def login(env, req):
     user_token = req.get_argument('user_token', '')
     password = req.get_argument('password', '')
 
-    #import logging
-    #logging.info(repr(locals()))
     if not user_token:
         return None
 
@@ -138,4 +136,5 @@ def user_info(env):
     }
 
     return result_data
+
 

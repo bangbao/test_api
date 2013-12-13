@@ -1,10 +1,10 @@
 # coding: utf-8
 
+import itertools
+
 from lib.utils import sys_random as random
 from lib.utils import rand_weight
 from . import constants
-
-import itertools
 
 
 def rectify_hole(pos_hole):
@@ -38,14 +38,13 @@ def goblin_birth(cfg_id, game_config, **kwargs):
     Returns:
         零件对象
     """
-    obj = dict(cfg_id=cfg_id, level=1, exp=0, level_up=0)
+    obj = {'cfg_id': cfg_id, 'level': 1, 'exp': 0, 'level_up': 0}
 
     level = kwargs.pop('level', 1)
     obj = goblin_upgrade(obj, game_config)
 
     for i in xrange(1, level):
         obj['exp'] = obj['level_up']
-
         obj = goblin_upgrade(obj, game_config)
 
     obj.update(kwargs)
@@ -228,4 +227,5 @@ def filter_goblin_merge(game_config):
         return goblins[obj['cfg_id']]['exp_type'] != exp_type
 
     return wrapper
+
 
