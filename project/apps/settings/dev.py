@@ -74,10 +74,10 @@ DATABASES = {
 }
 
 CACHES = [
-    {'host': 'localhost', 'port': 6379, 'db': 0},
-    {'host': 'localhost', 'port': 6379, 'db': 0},
-    {'host': 'localhost', 'port': 6379, 'db': 0},
-    {'host': 'localhost', 'port': 6379, 'db': 0},
+    {'host': 'localhost', 'port': 6379, 'db': 10},
+    #{'host': 'localhost', 'port': 6379, 'db': 0},
+    #{'host': 'localhost', 'port': 6379, 'db': 0},
+    #{'host': 'localhost', 'port': 6379, 'db': 0},
 ]
 
 CACHES_LEN = len(CACHES)

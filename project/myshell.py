@@ -6,8 +6,9 @@ import sys
 import os
 
 
-uid = 2
-target_id = 1
+start_time = time.time()
+uid = 1
+target_id = 2
 static_config = False
 dev1 = ('develop:0.0.1', 2)
 #dev2 = ('develop:0.0.1', 2)
@@ -297,4 +298,7 @@ def cron_strengthen_ratio(env):
 
 import redis 
 
-r = redis.Redis(host='127.0.0.1', port=16379)
+r = redis.Redis(host='127.0.0.1', port=6379, db=10)
+
+
+print time.time() - start_time

@@ -11,14 +11,14 @@ response_ok()
      status=$(curl --data "method=config.get_config&name=item" -w %{http_code} -s --output /dev/null "http://$1/api/")
 
      while [ $status != "200" ]; do
-	 sleep 5
-	 status=$(curl --data "method=config.get_config&name=item" -w %{http_code} -s --output /dev/null "http://$1/api/")
+    sleep 5
+    status=$(curl --data "method=config.get_config&name=item" -w %{http_code} -s --output /dev/null "http://$1/api/")
      done
 }
 
 check_pid_running()
 {
-    while [ $2 -gt $(ps ax | egrep -c "${GUNICORN_BIN}.*?$1") ]; do
+    while [ $2 -gt $(ps ax | egrep -c "${mdota}.*?$1") ]; do
 	sleep 1
     done
 }
