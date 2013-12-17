@@ -1,5 +1,14 @@
 # coding: utf-8
 
+import json
+import gevent
+import logging
+import xmlrpclib
+import tornado.web
+import tornado.websocket
+
+from collections import defaultdict
+
 from lib.core.handlers.htornado import BaseRequestHandler
 from lib.core.environ import Environ
 from lib.core.environ import APIEnviron
@@ -7,14 +16,6 @@ from lib.core.environ import AdminEnviron
 from apps import config as config_app
 from apps import public as public_app
 from apps.settings import ENVIRONS
-from collections import defaultdict
-
-import tornado.websocket
-import tornado.web
-import xmlrpclib
-import logging
-import gevent
-import json
 
 
 def preloader(env):
@@ -276,6 +277,22 @@ class ChatRequestHandler(UserMixIn, tornado.websocket.WebSocketHandler):
         logging.info('socket close')
 
         self.app.close_connect(self)
+
+
+class TextRequestHandler(APIRequestHandler):
+    """ 自由定义返回数据格式
+
+    可以自由定义返回数据格式
+    """
+    def api(self):
+        """ API统一调用方法
+        """
+        try:
+            self.write(str(self.env.api()))
+        finally:
+            self.finish()
+            # 手动删除apienviron对象
+            del self.env
 
 
 if __name__ == "__main__":

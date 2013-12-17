@@ -7,8 +7,8 @@ import os
 
 
 start_time = time.time()
-uid = 1
-target_id = 2
+uid = 2
+target_id = 1
 static_config = False
 dev1 = ('develop:0.0.1', 2)
 #dev2 = ('develop:0.0.1', 2)

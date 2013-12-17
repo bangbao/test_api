@@ -6,6 +6,7 @@ import time
 import psutil
 import signal
 import logging
+import tornado
 
 from tornado import ioloop
 from tornado import web
@@ -16,6 +17,7 @@ from apps import settings
 from apps.handers import (APIRequestHandler, 
                           AdminRequestHandler, 
                           ChatRequestHandler, 
+                          TextRequestHandler, 
                           preloader)
 
 
@@ -30,6 +32,7 @@ class Application(web.Application):
             (r"/api/", APIRequestHandler),
             (r"/chat/", ChatRequestHandler),
             (r"/admin.*", AdminRequestHandler),
+            (r"/text/", TextRequestHandler),
         ]
         super(Application, self).__init__(handlers, **settings.TORNADO_SETTINGS)
 
@@ -42,10 +45,9 @@ def main():
 
     #options.parse_command_line()
     #sokets = tornado.netutil.bind_sockets(options.port)
-    #tornado.process.fork_processes(0)
+    #tornado.process.fork_processes(1)
     #app = Application(options.debug)
     #server = HTTPServer(app)
-    ##server.listen(options.port)
     #server.add_sockets(sokets)
     #process = psutil.Process(os.getpid())
 
