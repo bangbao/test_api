@@ -2,83 +2,43 @@
 
 import umysqldb
 
-cursorclass = umysqldb.cursors.DictCursor
 
+REDIS_DEFAULT = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 0,
+    'password': 'F8974044A778',
+    'socket_timeout': 5,
+}
+
+MYSQL_DEFAULT = {
+    'host': 'localhost',
+    'user': 'root',
+    'passwd': '510312',
+    'db': 'lose',
+    'port': 3306,
+    'unix_socket': '/var/run/mysqld/mysqld.sock',
+    'cursorclass': umysqldb.cursors.DictCursor,
+}
 
 DATABASES = {
-    'lose': {
-        'host': 'localhost',
-        'user': 'root',
-        'passwd': '510312',
-        'db': 'lose',
-        'port': 3306,
-        'unix_socket': '/var/run/mysqld/mysqld.sock',
-        'cursorclass': cursorclass,
-    },
-    'redis': {
-        'host': 'localhost',
-        'port': 6379, 
-        'db': 0,
-        'password': 'F8974044A778',
-    },
-    'chat': {
-        'host': 'localhost',
-        'port': 6379, 
-    },
-    'auth': {
-        'host': 'localhost',
-        'user': 'root',
-        'passwd': '510312',
-        'db': 'auth',
-        'port': 3306,
-        'unix_socket': '/var/run/mysqld/mysqld.sock',
-        'cursorclass': cursorclass,
-    },
+    'lose': dict(MYSQL_DEFAULT, db='lose'),
+    'redis': dict(REDIS_DEFAULT, db=0),
+    'chat': dict(REDIS_DEFAULT, db=0),
+    'auth': dict(MYSQL_DEFAULT, db='auth'),
     'clusters': [
-       {
-            'host': 'localhost',
-            'user': 'root',
-            'passwd': '510312',
-            'db': 'cm1',
-            'port': 3306,
-            'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': cursorclass,
-       },
-       {
-            'host': 'localhost',
-            'user': 'root',
-            'passwd': '510312',
-            'db': 'cm2',
-            'port': 3306,
-            'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': cursorclass,
-       },
-       {
-            'host': 'localhost',
-            'user': 'root',
-            'passwd': '510312',
-            'db': 'cm3',
-            'port': 3306,
-            'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': cursorclass,
-       },
-       {
-            'host': 'localhost',
-            'user': 'root',
-            'passwd': '510312',
-            'db': 'cm4',
-            'port': 3306,
-            'unix_socket': '/var/run/mysqld/mysqld.sock',
-            'cursorclass': cursorclass,
-       }
+        dict(MYSQL_DEFAULT, db='cm1'),
+        dict(MYSQL_DEFAULT, db='cm2'),
+        dict(MYSQL_DEFAULT, db='cm3'),
+        dict(MYSQL_DEFAULT, db='cm4'),
     ],
 }
 
 CACHES = [
-    {'host': 'localhost', 'port': 6379, 'db': 10, 'password': 'F8974044A778'},
-    #{'host': 'localhost', 'port': 6379, 'db': 0},
-    #{'host': 'localhost', 'port': 6379, 'db': 0},
-    #{'host': 'localhost', 'port': 6379, 'db': 0},
+    dict(REDIS_DEFAULT, db=10),
+    # dict(REDIS_DEFAULT, db=11),
+    # dict(REDIS_DEFAULT, db=12),
+    # dict(REDIS_DEFAULT, db=13),
 ]
 
 CACHES_LEN = len(CACHES)

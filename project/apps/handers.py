@@ -128,7 +128,7 @@ class APIRequestHandler(UserMixIn, BaseRequestHandler):
         """
         for callback in self.env.callbacks:
             callback(self.env)
-        
+
         self.env.finish()
 
     @tornado.web.asynchronous

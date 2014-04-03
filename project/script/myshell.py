@@ -43,7 +43,7 @@ g = game_config = env.game_config
 
 ############import app######################################
 pwd = os.path.dirname(os.path.abspath(__file__))
-apps_root = os.path.join(pwd, 'apps')
+apps_root = os.path.join(pwd, '..', 'apps')
 for root, dirs, files in os.walk(apps_root):
     for dname in dirs:
         func = "%s_app = env.import_app('%s')" % (dname, dname)
@@ -79,12 +79,6 @@ u = user = user_app.get_user(env, uid)
 target = user_app.get_user(env, target_id)
 env.user = u
 
-u.game.load_arena()
-u.game.load_award()
-u.game.load_all(env)
-u.hero.load_all(env)
-u.adven.load_all(env)
-u.arena.load_all(env)
 
 def pickler(data):
 
@@ -201,9 +195,7 @@ def get_used_equip(user):
 ##u2.hero.load_all(env)
 #env.user = u1
 
-a = arena = u.game.arena
 #a.init(env, 'arena', u.game)
-b = award = u.game.award
 #b.init(env, 'award', u.game)
 
 #a.incr(0)
