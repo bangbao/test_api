@@ -6,7 +6,6 @@ import time
 import psutil
 import signal
 import logging
-import tornado
 
 from tornado import ioloop
 from tornado import web
@@ -14,10 +13,10 @@ from tornado.httpserver import HTTPServer
 from tornado.options import define, options
 from lib.core.environ import ShellEnviron
 from apps import settings
-from apps.handers import (APIRequestHandler, 
-                          AdminRequestHandler, 
-                          ChatRequestHandler, 
-                          TextRequestHandler, 
+from apps.handers import (APIRequestHandler,
+                          AdminRequestHandler,
+                          ChatRequestHandler,
+                          TextRequestHandler,
                           preloader)
 
 
@@ -63,7 +62,7 @@ def main():
 
         def stop_loop():
             timestamp = int(time.time()) + 1
-            
+
             if (io_loop._callbacks or io_loop._timeouts):
                 io_loop.add_timeout(timestamp, stop_loop)
             else:
